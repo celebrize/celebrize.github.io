@@ -3,11 +3,11 @@ const {
     e,
     goldenRatio,
 } = require('./digits.js')
-const {iteratorToNumbers} = require('./spec_helper.js')
+const {generatorToNumbers} = require('./spec_helper.js')
 
 describe('pi digit generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(pi(), 9)
+        const arr = generatorToNumbers(pi, 9)
         expect(arr).toEqual([
             314n,
             3141n,
@@ -21,26 +21,26 @@ describe('pi digit generator', () => {
         ])
     })
     test('it finally ends', () => {
-        const arr = iteratorToNumbers(pi(), 999)
+        const arr = generatorToNumbers(pi, 999)
         expect(arr.length).toBe(99)
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(pi(), 100)
-        const arr2 = iteratorToNumbers(pi(), 100)
+        const arr1 = generatorToNumbers(pi, 100)
+        const arr2 = generatorToNumbers(pi, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = pi()
+        let series = pi.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("These are the first 3 digits of Pi")
+        expect(first.getHelpText()).toEqual("These are the first 3 digits of Pi")
         const second = series.next().value
-        expect(second.help).toEqual("These are the first 4 digits of Pi")
+        expect(second.getHelpText()).toEqual("These are the first 4 digits of Pi")
     })
 })
 
 describe('eulers number digit generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(e(), 4)
+        const arr = generatorToNumbers(e, 4)
         expect(arr).toEqual([
             271n,
             2718n,
@@ -49,26 +49,26 @@ describe('eulers number digit generator', () => {
         ])
     })
     test('it finally ends', () => {
-        const arr = iteratorToNumbers(e(), 999)
+        const arr = generatorToNumbers(e, 999)
         expect(arr.length).toBe(49)
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(e(), 100)
-        const arr2 = iteratorToNumbers(e(), 100)
+        const arr1 = generatorToNumbers(e, 100)
+        const arr2 = generatorToNumbers(e, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = e()
+        let series = e.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("These are the first 3 digits of Euler's number")
+        expect(first.getHelpText()).toEqual("These are the first 3 digits of Euler's number")
         const second = series.next().value
-        expect(second.help).toEqual("These are the first 4 digits of Euler's number")
+        expect(second.getHelpText()).toEqual("These are the first 4 digits of Euler's number")
     })
 })
 
 describe('golden ratio number digit generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(goldenRatio(), 7)
+        const arr = generatorToNumbers(goldenRatio, 7)
         expect(arr).toEqual([
             161n,
             1618n,
@@ -80,19 +80,19 @@ describe('golden ratio number digit generator', () => {
         ])
     })
     test('it finally ends', () => {
-        const arr = iteratorToNumbers(goldenRatio(), 999)
+        const arr = generatorToNumbers(goldenRatio, 999)
         expect(arr.length).toBe(103)
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(goldenRatio(), 100)
-        const arr2 = iteratorToNumbers(goldenRatio(), 100)
+        const arr1 = generatorToNumbers(goldenRatio, 100)
+        const arr2 = generatorToNumbers(goldenRatio, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = goldenRatio()
+        let series = goldenRatio.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("These are the first 3 digits of the Golden ratio")
+        expect(first.getHelpText()).toEqual("These are the first 3 digits of the Golden ratio")
         const second = series.next().value
-        expect(second.help).toEqual("These are the first 4 digits of the Golden ratio")
+        expect(second.getHelpText()).toEqual("These are the first 4 digits of the Golden ratio")
     })
 })

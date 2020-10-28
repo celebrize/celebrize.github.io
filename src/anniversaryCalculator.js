@@ -56,9 +56,9 @@ class AnniversaryCalculator {
         const justPassed = []
         const upcoming = []
 
-        for (const generatorFunc of this.numberGenerators) {
+        for (const numberGenerator of this.numberGenerators) {
             for (const period of this.periods) {
-                const generator = generatorFunc()
+                const generator = numberGenerator.getGeneratorFunction()
                 for (const number of generator) {
                     const date = period(birthday, number.number)
                     if (isNaN(date.getTime())) {

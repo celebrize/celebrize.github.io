@@ -1,3 +1,6 @@
+const GeneratedNumber = require('../domain/generated_number')
+const NumberGenerator = require('../domain/number_generator')
+
 function* repetition() {
     let length = 3
     let digit = 1
@@ -7,10 +10,7 @@ function* repetition() {
             number = number * 10 + digit
         }
 
-        yield {
-            number: number,
-            help: "it is a string of repeating digits",
-        }
+        yield new GeneratedNumber(number, "it is a string of repeating digits")
 
         digit++
         if (digit >= 10) {
@@ -40,13 +40,10 @@ function* alteration() {
         let number = 0
         
         for(let i=0; i<length; i++) {
-            number = number * 10 + (i%2 == 0 ? digit1 : digit2)
+            number = number * 10 + (i%2 === 0 ? digit1 : digit2)
         }
 
-        yield {
-            number: number,
-            help: "it is a string of alternating digits",
-        }
+        yield new GeneratedNumber(number, "it is a string of alternating digits")
     }
 }
 
@@ -63,10 +60,7 @@ function* streetAscending() {
             currentDigit = (currentDigit + 1) % 10
         }
 
-        yield {
-            number: number,
-            help: "it is a string of ascending digits",
-        }
+        yield new GeneratedNumber(number, "it is a string of ascending digits")
 
         first = first + 1
         if (first >= 10) {
@@ -89,10 +83,7 @@ function* streetDescending() {
             currentDigit = (currentDigit + 9) % 10
         }
 
-        yield {
-            number: number,
-            help: "it is a string of descending digits",
-        }
+        yield new GeneratedNumber(number, "it is a string of descending digits")
 
         first = first + 1
         if (first >= 10) {
@@ -103,8 +94,8 @@ function* streetDescending() {
 }
 
 module.exports = {
-    alteration,
-    repetition,
-    streetAscending,
-    streetDescending,
+    alteration: new NumberGenerator(alteration),
+    repetition: new NumberGenerator(repetition),
+    streetAscending: new NumberGenerator(streetAscending),
+    streetDescending: new NumberGenerator(streetDescending),
 }

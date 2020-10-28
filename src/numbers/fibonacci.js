@@ -1,3 +1,6 @@
+const GeneratedNumber = require('../domain/generated_number')
+const NumberGenerator = require('../domain/number_generator')
+
 function* fibonacci() {
     let previous = 0
     let current = 1
@@ -7,11 +10,8 @@ function* fibonacci() {
         previous = current
         current = current + oldPrevious
         index++
-        yield {
-            number: current,
-            help: `${current} is the ${index}th Fibonacci number`
-        }
+        yield new GeneratedNumber(current, `${current} is the ${index}th Fibonacci number`)
     }
 }
 
-module.exports = fibonacci
+module.exports = new NumberGenerator(fibonacci)

@@ -1,3 +1,6 @@
+const GeneratedNumber = require('../domain/generated_number')
+const NumberGenerator = require('../domain/number_generator')
+
 function Hex(hex, humanReadable) {
     return {
         hex,
@@ -78,10 +81,7 @@ class HexSpeakData {
     }
 
     toResult() {
-        return {
-            number: this.number,
-            help: `0x${this.hexString} spells "${this.humanReadable}" in hexspeak`
-        }
+        return new GeneratedNumber(this.number, `0x${this.hexString} spells "${this.humanReadable}" in hexspeak`)
     }
 }
 
@@ -118,4 +118,4 @@ function* hexspeak() {
     }
 }
 
-module.exports = hexspeak
+module.exports = new NumberGenerator(hexspeak)

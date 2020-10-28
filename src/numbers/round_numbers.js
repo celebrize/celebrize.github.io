@@ -1,20 +1,20 @@
+const GeneratedNumber = require('../domain/generated_number')
+const NumberGenerator = require('../domain/number_generator')
+
 function generatorForBase(base, helpFunc) {
-    return function* () {
+    return new NumberGenerator(function* () {
         let number = 1
         let exponent = 0
         while (true) {
             const value = number * Math.pow(base, exponent)
-            yield {
-                number: value,
-                help: helpFunc ? helpFunc(value) : null
-            }
+            yield new GeneratedNumber(value, helpFunc ? helpFunc(value) : null)
             number++
             if (number >= base) {
                 number = 1
                 exponent++
             }
         }
-    }
+    })
 }
 
 module.exports = {

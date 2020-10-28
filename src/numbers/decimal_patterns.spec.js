@@ -4,11 +4,11 @@ const {
     streetAscending,
     streetDescending,
 } = require('./decimal_patterns.js')
-const {iteratorToNumbers} = require('./spec_helper.js')
+const {generatorToNumbers} = require('./spec_helper.js')
 
 describe('street ascending generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(streetAscending(), 12)
+        const arr = generatorToNumbers(streetAscending, 12)
         expect(arr).toEqual([
             12345,
             23456,
@@ -25,20 +25,20 @@ describe('street ascending generator', () => {
         ])
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(streetAscending(), 100)
-        const arr2 = iteratorToNumbers(streetAscending(), 100)
+        const arr1 = generatorToNumbers(streetAscending, 100)
+        const arr2 = generatorToNumbers(streetAscending, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = streetAscending()
+        let series = streetAscending.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("it is a string of ascending digits")
+        expect(first.getHelpText()).toEqual("it is a string of ascending digits")
     })
 })
 
 describe('street descending generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(streetDescending(), 12)
+        const arr = generatorToNumbers(streetDescending, 12)
         expect(arr).toEqual([
             10987,
             21098,
@@ -55,20 +55,20 @@ describe('street descending generator', () => {
         ])
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(streetDescending(), 100)
-        const arr2 = iteratorToNumbers(streetDescending(), 100)
+        const arr1 = generatorToNumbers(streetDescending, 100)
+        const arr2 = generatorToNumbers(streetDescending, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = streetDescending()
+        let series = streetDescending.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("it is a string of descending digits")
+        expect(first.getHelpText()).toEqual("it is a string of descending digits")
     })
 })
 
 describe('repetition generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = iteratorToNumbers(repetition(), 12)
+        const arr = generatorToNumbers(repetition, 12)
         expect(arr).toEqual([
             111,
             222,
@@ -85,20 +85,20 @@ describe('repetition generator', () => {
         ])
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(repetition(), 100)
-        const arr2 = iteratorToNumbers(repetition(), 100)
+        const arr1 = generatorToNumbers(repetition, 100)
+        const arr2 = generatorToNumbers(repetition, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = repetition()
+        let series = repetition.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("it is a string of repeating digits")
+        expect(first.getHelpText()).toEqual("it is a string of repeating digits")
     })
 })
 
 describe('alteration generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr1 = iteratorToNumbers(alteration(), 12)
+        const arr1 = generatorToNumbers(alteration, 12)
         expect(arr1).toEqual([
             1010,
             1212,
@@ -113,7 +113,7 @@ describe('alteration generator', () => {
             2121,
             2323,
         ])
-        const arr2 = iteratorToNumbers(alteration(), 3, 80)
+        const arr2 = generatorToNumbers(alteration, 3, 80)
         expect(arr2).toEqual([
             9898,
             10101,
@@ -121,13 +121,13 @@ describe('alteration generator', () => {
         ])
     })
     test('it can reset', () => {
-        const arr1 = iteratorToNumbers(alteration(), 100)
-        const arr2 = iteratorToNumbers(alteration(), 100)
+        const arr1 = generatorToNumbers(alteration, 100)
+        const arr2 = generatorToNumbers(alteration, 100)
         expect(arr1).toEqual(arr2)
     })
     test('it shows the correct help text', () => {
-        let series = alteration()
+        let series = alteration.getGeneratorFunction()
         const first = series.next().value
-        expect(first.help).toEqual("it is a string of alternating digits")
+        expect(first.getHelpText()).toEqual("it is a string of alternating digits")
     })
 })

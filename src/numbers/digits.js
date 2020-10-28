@@ -1,15 +1,15 @@
+const GeneratedNumber = require('../domain/generated_number')
+const NumberGenerator = require('../domain/number_generator')
+
 /* global BigInt */
 function generatorForNumber(number, label) {
-    return function* () {
+    return new NumberGenerator(function* () {
         let len = 3
         while (len <= number.length) {
-            yield {
-                number: BigInt(number.substring(0, len)),
-                help: `These are the first ${len} digits of ${label}`,
-            }
+            yield new GeneratedNumber(BigInt(number.substring(0, len)), `These are the first ${len} digits of ${label}`)
             len++
         }
-    }
+    })
 }
 
 module.exports = {

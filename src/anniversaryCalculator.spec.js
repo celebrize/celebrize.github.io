@@ -1,16 +1,16 @@
 const AnniversaryCalculator = require('./anniversaryCalculator.js')
 const {years, months} = require('./periods/calendar')
+const NumberGenerator = require('./domain/number_generator.js')
+const GeneratedNumber = require('./domain/generated_number.js')
 
 // plain number generator that generates natural numbers
-const naturalNumberGenerator = function* () {
+const naturalNumberGenerator = new NumberGenerator(function* () {
     let number = 1
     while (true) {
-        yield {
-            number: number
-        }
+        yield new GeneratedNumber(number)
         number++
     }
-}
+})
 
 describe('anniversary calculator', () => {
     test('it works', () => {
