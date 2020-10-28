@@ -1,0 +1,33 @@
+const AnniversaryCalculator = require('./anniversaryCalculator.js')
+
+const birthday = new Date(process.argv[2])
+const now = new Date()
+
+const min = new Date(now)
+min.setMonth(min.getMonth() - 2)
+const max = new Date(now)
+max.setMonth(max.getMonth() + 6)
+const calculator = new AnniversaryCalculator(min, max)
+
+const digits = require('./numbers/digits.js')
+const fibonacci = require('./numbers/fibonacci.js')
+const roundNumbers = require('./numbers/round_numbers.js')
+const hexspeak = require('./numbers/hexspeak.js')
+const decimalPatterns = require('./numbers/decimal_patterns')
+const basicMath = require('./numbers/math_basic')
+calculator.addNumberGenerators(Object.values(digits))
+calculator.addNumberGenerator(fibonacci)
+calculator.addNumberGenerators(Object.values(roundNumbers))
+calculator.addNumberGenerator(hexspeak)
+calculator.addNumberGenerators(Object.values(decimalPatterns))
+calculator.addNumberGenerators(Object.values(basicMath))
+
+const clockPeriods = require('./periods/clock.js')
+const calendarPeriods = require('./periods/calendar.js')
+const celestialCalendarPeriods = require('./periods/celestial_calendar.js')
+calculator.addPeriods(Object.values(clockPeriods))
+calculator.addPeriods(Object.values(calendarPeriods))
+calculator.addPeriods(Object.values(celestialCalendarPeriods))
+
+const [upcoming, justPassed] = calculator.calculate(birthday, now)
+console.log(upcoming, justPassed)
