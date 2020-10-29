@@ -1,30 +1,28 @@
-const days = (now, number) => {
+const TimePeriod = require('../domain/time_period')
+
+const days = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setDate(now.getDate() + Number(number))
     return date
-}
-days.help = "calendar days"
+}, "calendar days")
 
-const weeks = (now, number) => {
+const weeks = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setDate(now.getDate() + Number(number) * 7)
     return date
-}
-weeks.help = "calendar weeks"
+}, "calendar weeks")
 
-const months = (now, number) => {
+const months = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setMonth(date.getMonth() + Number(number))
     return date
-}
-months.help = "calendar months"
+}, "calendar months")
 
-const years = (now, number) => {
+const years = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setFullYear(date.getFullYear() + Number(number))
     return date
-}
-years.help = "calendar years"
+}, "calendar years")
 
 module.exports = {
     days,

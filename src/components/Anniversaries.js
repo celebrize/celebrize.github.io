@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
 import AnniversaryCalculator from '../anniversaryCalculator';
-
-function Anniversary(props) {
-    const key = props.date.getTime()
-    console.log(props)
-    return (<li key={key}>{props.date.toLocaleDateString()}: {props.number.number} {props.period.help}</li>)
-}
+import Anniversary from './Anniversary';
 
 function Anniversaries(props) {
     console.debug("anniversaries rendered")
@@ -43,7 +38,7 @@ function Anniversaries(props) {
         return (<div>
             <h2>{props.birthday.toLocaleDateString()}</h2>
             <ul>
-                {upcoming.map(anniversary => Anniversary(anniversary))}
+                {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} />))}
             </ul>
         </div>)
     } else {

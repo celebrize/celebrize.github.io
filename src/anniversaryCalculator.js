@@ -1,11 +1,5 @@
 
-class Anniversary {
-    constructor(number, period, date) {
-        this.number = number
-        this.period = period
-        this.date = date
-    }
-}
+const Anniversary = require('./domain/anniversary')
 
 const sortAnniversaryFnc = (a, b) => {
     return a.date.getTime() - b.date.getTime()
@@ -60,7 +54,7 @@ class AnniversaryCalculator {
             for (const period of this.periods) {
                 const generator = numberGenerator.getGeneratorFunction()
                 for (const number of generator) {
-                    const date = period(birthday, number.number)
+                    const date = period.getDate(birthday, number.number)
                     if (isNaN(date.getTime())) {
                         break
                     } else if (date > this.minDate) {

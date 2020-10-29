@@ -1,23 +1,22 @@
-const seconds = (now, number) => {
+const TimePeriod = require('../domain/time_period')
+
+const seconds = new TimePeriod((now, number) => {
     const date = new Date()
     date.setTime(now.getTime() + Number(number)*1000)
     return date
-}
-seconds.help = "seconds"
+}, "seconds")
 
-const minutes = (now, number) => {
+const minutes = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setMinutes(date.getMinutes() + Number(number))
     return date
-}
-minutes.help = "minutes"
+}, "minutes")
 
-const hours = (now, number) => {
+const hours = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setHours(date.getHours() + Number(number))
     return date
-}
-hours.help = "hours"
+}, "hours")
 
 module.exports = {
     seconds,
