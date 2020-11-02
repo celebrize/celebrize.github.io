@@ -58,7 +58,7 @@ class AnniversaryCalculator {
                     if (isNaN(date.getTime())) {
                         break
                     } else if (date > this.minDate) {
-                        if (date < now) {
+                        if (date < now && !(date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear())) {
                             justPassed.push(new Anniversary(number, period, date))
                         } else if (date < this.maxDate) {
                             upcoming.push(new Anniversary(number, period, date))
