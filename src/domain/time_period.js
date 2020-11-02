@@ -1,11 +1,19 @@
 class TimePeriod {
-    constructor(dateFnc, helpText) {
+    constructor(dateFnc, label) {
         this.dateFnc = dateFnc
-        this.helpText = helpText
+        this.label = label
     }
 
     getDate(now, number) {
         return this.dateFnc(now, number)
+    }
+
+    getLabel() {
+        return this.label
+    }
+
+    setHelpText(text) {
+        this.helpText = text
     }
 
     getHelpText() {

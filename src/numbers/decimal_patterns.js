@@ -10,7 +10,7 @@ function* repetition() {
             number = number * 10 + digit
         }
 
-        yield new GeneratedNumber(number, "it is a string of repeating digits")
+        yield new GeneratedNumber(number, "a string of repeating digits")
 
         digit++
         if (digit >= 10) {
@@ -43,7 +43,7 @@ function* alteration() {
             number = number * 10 + (i%2 === 0 ? digit1 : digit2)
         }
 
-        yield new GeneratedNumber(number, "it is a string of alternating digits")
+        yield new GeneratedNumber(number, "a string of alternating digits")
     }
 }
 
@@ -60,7 +60,7 @@ function* streetAscending() {
             currentDigit = (currentDigit + 1) % 10
         }
 
-        yield new GeneratedNumber(number, "it is a string of ascending digits")
+        yield new GeneratedNumber(number, "a string of ascending digits")
 
         first = first + 1
         if (first >= 10) {
@@ -83,7 +83,7 @@ function* streetDescending() {
             currentDigit = (currentDigit + 9) % 10
         }
 
-        yield new GeneratedNumber(number, "it is a string of descending digits")
+        yield new GeneratedNumber(number, "a string of descending digits")
 
         first = first + 1
         if (first >= 10) {

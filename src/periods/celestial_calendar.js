@@ -14,7 +14,8 @@ const lunarMonths = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
     return date
-}, "[lunar month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month), the number of moon cycles visible from earth")
+}, "lunar month")
+lunarMonths.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
 
 const lunarOrbits = new TimePeriod((now, number) => {
     // @see https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month
@@ -22,8 +23,8 @@ const lunarOrbits = new TimePeriod((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
     return date
-}, "[lunar orbits](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
-
+}, "lunar orbits")
+lunarOrbits.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
 
 const days = 24*60*60
 const years = 365.25 * days
@@ -51,7 +52,9 @@ class Celestial {
         }
         const help = `rotation of ${this.name} relative to the fixed stars`
 
-        return new TimePeriod(fnc, help)
+        const period = new TimePeriod(fnc)
+        period.setHelpText(help)
+        return period
     }
     getOrbitCalculation() {
         const fnc = (now, number) => {
@@ -59,9 +62,12 @@ class Celestial {
             date.setTime(now.getTime() + Number(number) * this.orbitTime * 1000)
             return date
         }
+        const label = `${this.name} years`
         const help = `orbits of ${this.name} around the sun`
 
-        return new TimePeriod(fnc, help)
+        const period = new TimePeriod(fnc, label)
+        period.setHelpText(help)
+        return period
     }
     getDayCalculation() {
         const fnc = (now, number) => {
@@ -69,9 +75,12 @@ class Celestial {
             date.setTime(now.getTime() + Number(number) * this.dayNightCycleTime * 1000)
             return date
         }
+        const label = `${this.name} days`
         const help = `day-night cycles as seen on ${this.name}`
 
-        return new TimePeriod(fnc, help)
+        const period = new TimePeriod(fnc, label)
+        period.setHelpText(help)
+        return period
     }
     getConstellationCalculation() {
         const fnc = (now, number) => {
@@ -81,7 +90,9 @@ class Celestial {
         }
         const help = `${this.name} and earth are in the same relation to one another`
 
-        return new TimePeriod(fnc, help)
+        const period = new TimePeriod(fnc)
+        period.setHelpText(help)
+        return period
     }
 }
 

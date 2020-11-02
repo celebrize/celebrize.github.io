@@ -4,6 +4,10 @@ class GeneratedNumber {
         this.helpText = helpText
     }
 
+    setLabel(label) {
+        this.label = label
+    }
+
     getNumber() {
         return this.number
     }
@@ -13,7 +17,11 @@ class GeneratedNumber {
     }
 
     toString() {
-        return `${this.number}`
+        if(this.label) {
+            return this.label
+        } else {
+            return `${this.number}`
+        }
     }
 }
 

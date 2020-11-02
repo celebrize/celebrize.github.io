@@ -18,16 +18,16 @@ describe('binary round number generator', () => {
         const arr2 = generatorToNumbers(binary, 100)
         expect(arr1).toEqual(arr2)
     })
-    test('it shows the correct help text', () => {
+    test('it shows the correct label', () => {
         let series = binary.getGeneratorFunction()
         const first = series.next().value
-        expect(first.getHelpText()).toEqual("[1]₂ is a round binary number")
+        expect(first.toString()).toEqual("[1]₂")
         const second = series.next().value
-        expect(second.getHelpText()).toEqual("[10]₂ is a round binary number")
+        expect(second.toString()).toEqual("[10]₂")
         const thrid = series.next().value
-        expect(thrid.getHelpText()).toEqual("[100]₂ is a round binary number")
+        expect(thrid.toString()).toEqual("[100]₂")
         const fourth = series.next().value
-        expect(fourth.getHelpText()).toEqual("[1000]₂ is a round binary number")
+        expect(fourth.toString()).toEqual("[1000]₂")
     })
 })
 describe('octal round number generator', () => {
@@ -47,18 +47,18 @@ describe('octal round number generator', () => {
     test('it shows the correct help text', () => {
         let series = octal.getGeneratorFunction()
         const first = series.next().value
-        expect(first.getHelpText()).toEqual("[1]₈ is a round octal number")
+        expect(first.toString()).toEqual("[1]₈")
         const second = series.next().value
-        expect(second.getHelpText()).toEqual("[2]₈ is a round octal number")
+        expect(second.toString()).toEqual("[2]₈")
         series.next()
         series.next()
         series.next()
         series.next()
         series.next()
         const eigth = series.next().value
-        expect(eigth.getHelpText()).toEqual("[10]₈ is a round octal number")
+        expect(eigth.toString()).toEqual("[10]₈")
         const nineth = series.next().value
-        expect(nineth.getHelpText()).toEqual("[20]₈ is a round octal number")
+        expect(nineth.toString()).toEqual("[20]₈")
     })
 })
 describe('decimal round number generator', () => {
@@ -92,9 +92,9 @@ describe('hexadecimal round number generator', () => {
     test('it shows the correct help text', () => {
         let series = hexadecimal.getGeneratorFunction()
         const first = series.next().value
-        expect(first.getHelpText()).toEqual("0x1 is a round hexadecimal number")
+        expect(first.toString()).toEqual("0x1")
         const second = series.next().value
-        expect(second.getHelpText()).toEqual("0x2 is a round hexadecimal number")
+        expect(second.toString()).toEqual("0x2")
         series.next()
         series.next()
         series.next()
@@ -103,15 +103,15 @@ describe('hexadecimal round number generator', () => {
         series.next()
         series.next()
         const tenth = series.next().value
-        expect(tenth.getHelpText()).toEqual("0xA is a round hexadecimal number")
+        expect(tenth.toString()).toEqual("0xA")
         series.next()
         series.next()
         series.next()
         series.next()
         series.next()
         const sixteenth = series.next().value
-        expect(sixteenth.getHelpText()).toEqual("0x10 is a round hexadecimal number")
+        expect(sixteenth.toString()).toEqual("0x10")
         const seventeenth = series.next().value
-        expect(seventeenth.getHelpText()).toEqual("0x20 is a round hexadecimal number")
+        expect(seventeenth.toString()).toEqual("0x20")
     })
 })

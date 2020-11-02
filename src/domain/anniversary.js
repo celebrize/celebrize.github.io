@@ -1,5 +1,3 @@
-const { relativeTimeThreshold } = require("moment")
-
 class Anniversary {
     constructor(number, period, date) {
         this.number = number
@@ -15,8 +13,23 @@ class Anniversary {
         return this.number.toString()
     }
 
+    getDecimalLabel() {
+        return `${this.number.number}`
+    }
+
+    hasDecimalLabel() {
+        return this.getNumberLabel() !== this.getDecimalLabel()
+    }
+
+    getNumberHelpText() {
+        return this.number.getHelpText()
+    }
+
     getPeriodLabel() {
-        // @TODO: dedicated label, not the help text
+        return this.period.getLabel()
+    }
+
+    getPeriodHelpText() {
         return this.period.getHelpText()
     }
 }

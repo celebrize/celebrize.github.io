@@ -71,3 +71,8 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 # Ideas
 
 * use unsplash images to illustrate dates
+* "You can see light from Alpha Centaury from the day you were born" / "Life on Alpha Centauri would only now know of your existence right now"
+* "You could have watched the original Star Wars Trilogy 10000 times since your birth"
+* "This day has the exact distance from your date of birth as the sinking of the titanic"
+* "9/11 has the same distance from today as to your date of birth"
+* "As of today Uranium-238 has decayed to 20% of its radioactivity as it had on your day of birth"
