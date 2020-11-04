@@ -68,7 +68,6 @@ function Anniversary(props) {
     const colorId = Math.floor(id % colors.length)
     const imgId = Math.floor(id % imgIds.length)
 
-    console.log(anniversary)
     const flip = () => setFlipped(!isFlipped)
     const helpText = (anniversary) => {
         return (<div>

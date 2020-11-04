@@ -17,6 +17,7 @@ function App() {
   
   const [birthday, setBirthday] = useState(null)
   const onDateChange = (date) => {
+    date.hours(12).minutes(0).seconds(0)
     setBirthday(date.toDate())
   }
 
