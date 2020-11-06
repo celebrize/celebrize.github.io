@@ -21,13 +21,21 @@ describe('binary round number generator', () => {
     test('it shows the correct label', () => {
         let series = binary.getGeneratorFunction()
         const first = series.next().value
-        expect(first.toString()).toEqual("[1]₂")
+        expect(first.toString()).toEqual("2⁰")
         const second = series.next().value
-        expect(second.toString()).toEqual("[10]₂")
+        expect(second.toString()).toEqual("2¹")
         const thrid = series.next().value
-        expect(thrid.toString()).toEqual("[100]₂")
+        expect(thrid.toString()).toEqual("2²")
         const fourth = series.next().value
-        expect(fourth.toString()).toEqual("[1000]₂")
+        expect(fourth.toString()).toEqual("2³")
+        series.next()
+        series.next()
+        series.next()
+        series.next()
+        series.next()
+        series.next()
+        const tenth = series.next().value
+        expect(tenth.toString()).toEqual("2¹⁰")
     })
 })
 describe('octal round number generator', () => {

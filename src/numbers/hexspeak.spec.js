@@ -24,8 +24,8 @@ describe('hexspeak number generator', () => {
     test('it shows the correct help text', () => {
         let series = hexspeak.getGeneratorFunction()
         const first = series.next().value
-        expect(first.getHelpText()).toEqual('0x0DD spells "odd" in hexspeak')
+        expect(first.getHelpText()).toEqual('spells "odd" in hexspeak')
         const second = series.next().value
-        expect(second.getHelpText()).toEqual('0x1CE spells "ice" in hexspeak')
+        expect(second.getHelpText()).toEqual('spells "ice" in hexspeak')
     })
 })

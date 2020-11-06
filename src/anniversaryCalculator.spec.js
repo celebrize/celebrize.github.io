@@ -49,13 +49,13 @@ describe('anniversary calculator', () => {
 
         justPassed.reduce((prev, cur) => {
             if(prev !== undefined) {
-                expect(cur.date.getTime()).toBeGreaterThanOrEqual(prev.date.getTime())
+                expect(cur.getTime()).toBeGreaterThanOrEqual(prev.getTime())
             }
             return cur
         })
         upcoming.reduce((prev, cur) => {
             if(prev !== undefined) {
-                expect(cur.date.getTime()).toBeGreaterThanOrEqual(prev.date.getTime())
+                expect(cur.getTime()).toBeGreaterThanOrEqual(prev.getTime())
             }
             return cur
         })

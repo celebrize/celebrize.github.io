@@ -1,34 +1,45 @@
 const Anniversary = require("./anniversary")
 const GeneratedNumber = require("./generated_number")
-const TimePeriod = require("./time_period")
+const GeneratedDate = require("./generated_date")
 
 describe('getStaticId', () => {
     test('is a number that is consistent with its number and its time period', () => {
-        const number = new GeneratedNumber(1)
-        const timePeriod = new TimePeriod()
-        const date = new Date('1969-07-20 20:17:58Z')
-        const anniversary = new Anniversary(number, timePeriod, date)
+        const number = new GeneratedNumber(42)
+        const date = new GeneratedDate(new Date('1969-07-20 20:17:58Z'), "mock")
+        const anniversary = new Anniversary(number, date)
 
         expect(anniversary.getStaticId()).toBeGreaterThan(0)
         expect(anniversary.getStaticId()).toEqual(anniversary.getStaticId())
 
-        const anniversary2 = new Anniversary(number, timePeriod, date)
-
+        const anniversary2 = new Anniversary(number, date)
         expect(anniversary2.getStaticId()).toEqual(anniversary.getStaticId())
     })
-    test('is different for different dates and does not end in the same digits', () => {
-        
+    test('it does not correlate with the date', () => {
         const number = new GeneratedNumber(1)
-        const timePeriod = new TimePeriod()
-        const date = new Date('1969-07-20 20:17:58Z')
-        const date2 = new Date(date)
-        date2.setFullYear(date.getFullYear() + 1)
-        const anniversary = new Anniversary(number, timePeriod, date)
-        const anniversary2 = new Anniversary(number, timePeriod, date2)
+        const date = new GeneratedDate(new Date('1969-07-20 20:17:58Z'), "mock")
+        const date2 = new GeneratedDate(new Date(date.getDate()), "mock")
+        date2.getDate().setSeconds(date2.getDate().getSeconds() + 999)
+        const anniversary = new Anniversary(number, date)
+        const anniversary2 = new Anniversary(number, date2)
 
-        expect(anniversary.getStaticId()).not.toEqual(anniversary2.getStaticId())
+        expect(anniversary.getStaticId()).toEqual(anniversary2.getStaticId())
+    })
+    test('it is different for different numbers and time periods', () => {
+        const number1 = new GeneratedNumber(1)
+        const number2 = new GeneratedNumber(2)
+        const date1 = new GeneratedDate(new Date('1969-07-20 20:17:58Z'), "mock1")
+        const date2 = new GeneratedDate(new Date('1969-07-20 20:17:58Z'), "mock2")
 
-        // to prevent duplicate images for tiles that are 24h apart
-        expect(anniversary.getStaticId() % 1000).not.toEqual(anniversary2.getStaticId() % 1000)
+        const anniversary1 = new Anniversary(number1, date1)
+        const anniversary2 = new Anniversary(number1, date2)
+        const anniversary3 = new Anniversary(number2, date1)
+        const anniversary4 = new Anniversary(number2, date2)
+
+        expect(anniversary1.getStaticId()).not.toEqual(anniversary2.getStaticId())
+        expect(anniversary1.getStaticId()).not.toEqual(anniversary3.getStaticId())
+        expect(anniversary1.getStaticId()).not.toEqual(anniversary2.getStaticId())
+        expect(anniversary2.getStaticId()).not.toEqual(anniversary3.getStaticId())
+        expect(anniversary2.getStaticId()).not.toEqual(anniversary4.getStaticId())
+        expect(anniversary3.getStaticId()).not.toEqual(anniversary4.getStaticId())
     })
 })

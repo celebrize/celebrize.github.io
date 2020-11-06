@@ -1,4 +1,5 @@
-const TimePeriod = require('../domain/time_period')
+const PeriodGenerator = require('../domain/period_generator')
+const GeneratedDate = require('../domain/generated_date')
 
 /* Orbits crash course:
  * 
@@ -8,23 +9,29 @@ const TimePeriod = require('../domain/time_period')
  * - *synodic month* means an orbit relative to the orbitted object (for instance moon phases as seen from earth)
  */
 
-const lunarMonths = new TimePeriod((now, number) => {
+const lunarMonths = new PeriodGenerator((now, number) => {
     // @see https://en.wikipedia.org/wiki/Lunar_month#Synodic_month
     const lunarSpan = (((29 * 24) + 12) * 60 + 44) * 60 + 2.8016
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
-    return date
-}, "lunar month")
-lunarMonths.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
 
-const lunarOrbits = new TimePeriod((now, number) => {
+    const genDate = new GeneratedDate(date, "lunar month")
+    genDate.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
+    genDate.addTags(PeriodGenerator.MONTHISH)
+    return genDate
+})
+
+const lunarOrbits = new PeriodGenerator((now, number) => {
     // @see https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month
     const lunarSpan = (((27 * 24) + 7) * 60 + 43) * 60 + 11.6
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
-    return date
-}, "lunar orbits")
-lunarOrbits.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
+
+    const genDate = new GeneratedDate(date, "lunar orbits")
+    genDate.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
+    genDate.addTags(PeriodGenerator.MONTHISH)
+    return genDate
+})
 
 const days = 24*60*60
 const years = 365.25 * days
@@ -44,56 +51,45 @@ class Celestial {
         // This is the time where earth and the planet are in the same relation to one another
         this.earthConstellationTime = 1 / Math.abs(1/this.orbitTime - 1/earthOrbitTime)
     }
-    getSiderealCalculation() {
-        const fnc = (now, number) => {
-            const date = new Date(now)
-            date.setTime(now.getTime() + Number(number) * this.siderealPeriodTime * 1000)
-            return date
-        }
-        const help = `rotation of ${this.name} relative to the fixed stars`
-
-        const period = new TimePeriod(fnc)
-        period.setHelpText(help)
-        return period
-    }
+    // getSiderealCalculation() {
+    //     const fnc = (now, number) => {
+    //         const date = new Date(now)
+    //         date.setTime(now.getTime() + Number(number) * this.siderealPeriodTime * 1000)
+    //         return date
+    //     }
+    // }
     getOrbitCalculation() {
         const fnc = (now, number) => {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.orbitTime * 1000)
-            return date
-        }
-        const label = `${this.name} years`
-        const help = `orbits of ${this.name} around the sun`
 
-        const period = new TimePeriod(fnc, label)
-        period.setHelpText(help)
-        return period
+            const genDate = new GeneratedDate(date, `${this.name} years`)
+            genDate.setHelpText(`orbits of ${this.name} around the sun`)
+            genDate.addTags(PeriodGenerator.MONTHISH)
+            return genDate
+        }
+        return new PeriodGenerator(fnc)
     }
     getDayCalculation() {
         const fnc = (now, number) => {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.dayNightCycleTime * 1000)
-            return date
-        }
-        const label = `${this.name} days`
-        const help = `day-night cycles as seen on ${this.name}`
 
-        const period = new TimePeriod(fnc, label)
-        period.setHelpText(help)
-        return period
-    }
-    getConstellationCalculation() {
-        const fnc = (now, number) => {
-            const date = new Date(now)
-            date.setTime(now.getTime() + Number(number) * this.earthConstellationTime * 1000)
-            return date
+            const genDate = new GeneratedDate(date, `${this.name} days`)
+            genDate.setHelpText(`day-night cycles as seen on ${this.name}`)
+            genDate.addTags(PeriodGenerator.DAYISH)
+            return genDate
         }
-        const help = `${this.name} and earth are in the same relation to one another`
-
-        const period = new TimePeriod(fnc)
-        period.setHelpText(help)
-        return period
+        return new PeriodGenerator(fnc)
     }
+    // getConstellationCalculation() {
+    //     const fnc = (now, number) => {
+    //         const date = new Date(now)
+    //         date.setTime(now.getTime() + Number(number) * this.earthConstellationTime * 1000)
+    //         return date
+    //     }
+    //     const help = `${this.name} and earth are in the same relation to one another`
+    // }
 }
 
 // @see https://ssd.jpl.nasa.gov/?planet_phys_par

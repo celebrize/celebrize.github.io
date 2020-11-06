@@ -1,22 +1,32 @@
-const TimePeriod = require('../domain/time_period')
+const PeriodGenerator = require('../domain/period_generator')
+const GeneratedDate = require('../domain/generated_date')
 
-const seconds = new TimePeriod((now, number) => {
+const seconds = new PeriodGenerator((now, number) => {
     const date = new Date()
     date.setTime(now.getTime() + Number(number)*1000)
-    return date
-}, "seconds")
+    
+    const genDate = new GeneratedDate(date, "seconds")
+    genDate.addTags(PeriodGenerator.SECONDISH)
+    return genDate
+})
 
-const minutes = new TimePeriod((now, number) => {
+const minutes = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setMinutes(date.getMinutes() + Number(number))
-    return date
-}, "minutes")
+    
+    const genDate = new GeneratedDate(date, "minutes")
+    genDate.addTags(PeriodGenerator.MINUTISH)
+    return genDate
+})
 
-const hours = new TimePeriod((now, number) => {
+const hours = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setHours(date.getHours() + Number(number))
-    return date
-}, "hours")
+    
+    const genDate = new GeneratedDate(date, "hours")
+    genDate.addTags(PeriodGenerator.HOURISH)
+    return genDate
+})
 
 module.exports = {
     seconds,

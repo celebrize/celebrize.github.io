@@ -10,7 +10,7 @@ function UnsplashImg(props) {
     const width = props.width || 300
     const height = props.height || 200
 
-    return <img src={`${baseUri}/photo-${id}?ixlib=${ixlib}&ixid=${ixid}&w=${width}&h=${height}&crop=${crop}`} width={width} height={height} />
+    return <img src={`${baseUri}/photo-${id}?ixlib=${ixlib}&ixid=${ixid}&w=${width}&h=${height}&crop=${crop}`} alt="" width="100%" height="100%" />
 }
 
 export default UnsplashImg

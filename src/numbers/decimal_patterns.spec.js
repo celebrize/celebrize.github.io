@@ -68,8 +68,17 @@ describe('street descending generator', () => {
 
 describe('repetition generator', () => {
     test('generates correct, ascending numbers', () => {
-        const arr = generatorToNumbers(repetition, 12)
+        const arr = generatorToNumbers(repetition, 21)
         expect(arr).toEqual([
+            11,
+            22,
+            33,
+            44,
+            55,
+            66,
+            77,
+            88,
+            99,
             111,
             222,
             333,

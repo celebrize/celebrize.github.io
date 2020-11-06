@@ -1,12 +1,15 @@
 class Anniversary {
-    constructor(number, period, date) {
+    constructor(number, date) {
         this.number = number
-        this.period = period
         this.date = date
     }
 
+    getDateObject() {
+        return this.date.getDate()
+    }
+
     getTime() {
-        return this.date.getTime()
+        return this.date.getDate().getTime()
     }
 
     getNumberLabel() {
@@ -26,18 +29,29 @@ class Anniversary {
     }
 
     getPeriodLabel() {
-        return this.period.getLabel()
+        return this.date.getLabel()
     }
 
     getPeriodHelpText() {
-        return this.period.getHelpText()
+        return this.date.getHelpText()
+    }
+
+    getPrecision() {
+        return this.date.getPrecision()
     }
 
     getStaticId() {
-        // multiplication hash function
-        // @see https://xlinux.nist.gov/dads/HTML/multiplicationMethod.html#:~:text=Definition%3A%20A%20hash%20function%20that,)%200%20%3C%20A%20%3C%201.
-        const n = 0.6180339887498948482 * this.date.getTime()
-        return Math.floor(Number.MAX_SAFE_INTEGER * (n - Math.floor(n)))
+        const base = `${this.getNumberLabel()} ${this.getPeriodLabel()}`
+
+        // stolen from https://stackoverflow.com/a/7616484
+        let hash = 0, i, chr;
+        for (i = 0; i < base.length; i++) {
+            chr   = base.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        hash += 0xefffffff
+        return hash;
     }
 }
 

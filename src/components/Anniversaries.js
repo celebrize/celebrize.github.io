@@ -2,23 +2,19 @@ import React, { useState } from 'react';
 import AnniversaryCalculator from '../anniversaryCalculator';
 import Anniversary from './Anniversary';
 
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
-        overflow: 'hidden',
-        backgroundColor: theme.palette.background.paper,
-    },
+  root: {
+    flexGrow: 1,
+  },
 }));
+
 function Anniversaries(props) {
     console.debug("anniversaries rendered")
     const classes = useStyles()
+    const spacing = 2
 
     if(props.birthday) {
         const now = new Date()
@@ -51,19 +47,10 @@ function Anniversaries(props) {
         const [upcoming, justPassed] = calculator.calculate(props.birthday, now)
 
         return (
-            <div  className={classes.root}>
-              <GridList cellHeight={180} cols={2} spacing={4}>
-              <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                  <ListSubheader component="div">Just passed</ListSubheader>
-                </GridListTile>
-                {justPassed.map(anniversary => (<Anniversary anniversary={anniversary} />))}
-                <GridListTile key="Subheader" cols={2} style={{ height: 'auto' }}>
-                  <ListSubheader component="div">Upcoming Birthdays</ListSubheader>
-                </GridListTile>
-                {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} />))}
-              </GridList>
-            </div>
-          )
+          <Grid container className={classes.root} spacing={spacing} justify="center">
+            {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
+          </Grid>
+        )
     } else {
         return (<p>Select your Birthday.</p>)
     }

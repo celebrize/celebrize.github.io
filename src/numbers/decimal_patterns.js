@@ -2,7 +2,7 @@ const GeneratedNumber = require('../domain/generated_number')
 const NumberGenerator = require('../domain/number_generator')
 
 function* repetition() {
-    let length = 3
+    let length = 2
     let digit = 1
     while(true) {
         let number = 0

@@ -2,13 +2,13 @@
 const Anniversary = require('./domain/anniversary')
 
 const sortAnniversaryFnc = (a, b) => {
-    return a.date.getTime() - b.date.getTime()
+    return a.getTime() - b.getTime()
 }
 
 const deduplicateAnniversaries = anniversaries => {
     return anniversaries.reduce((list, cur) => {
         const last = list.length > 0 ? list.slice(-1)[0] : undefined
-        if(last !== undefined && last.date.toLocaleDateString() === cur.date.toLocaleDateString()) {
+        if(last !== undefined && last.getDateObject().toLocaleDateString() === cur.getDateObject().toLocaleDateString()) {
             // skip, because it is the same date
             // @TODO: add a weight function to determine which is the more convincing birthday
         } else {
@@ -54,14 +54,15 @@ class AnniversaryCalculator {
             for (const period of this.periods) {
                 const generator = numberGenerator.getGeneratorFunction()
                 for (const number of generator) {
-                    const date = period.getDate(birthday, number.number)
+                    const genDate = period.generateDate(birthday, number.number)
+                    const date = genDate.getDate()
                     if (isNaN(date.getTime())) {
                         break
                     } else if (date > this.minDate) {
                         if (date < now && !(date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear())) {
-                            justPassed.push(new Anniversary(number, period, date))
+                            justPassed.push(new Anniversary(number, genDate))
                         } else if (date < this.maxDate) {
-                            upcoming.push(new Anniversary(number, period, date))
+                            upcoming.push(new Anniversary(number, genDate))
                         } else {
                             break
                         }
