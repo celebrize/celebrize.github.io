@@ -2,6 +2,7 @@ class GeneratedNumber {
     constructor(number, helpText) {
         this.number = number
         this.helpText = helpText
+        this.tags = []
     }
 
     setLabel(label) {
@@ -22,6 +23,15 @@ class GeneratedNumber {
         } else {
             return `${this.number}`
         }
+    }
+
+    addTags(...tags) {
+        // @TODO: validate
+        this.tags.push(...tags)
+    }
+
+    hasTag(tag) {
+        return this.tags.some(v => v === tag)
     }
 }
 

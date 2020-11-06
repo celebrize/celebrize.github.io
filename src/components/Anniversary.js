@@ -137,6 +137,7 @@ function Anniversary(props) {
 
     const classes = useStyles()
     const anniversary = props.anniversary
+    console.log(anniversary)
     const id = anniversary.getStaticId()
     const colorId = Math.floor(id % colors.length)
     const image = selectImageFor(anniversary)

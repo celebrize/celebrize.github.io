@@ -70,6 +70,7 @@ class HexSpeakData {
     constructor(...hexes) {
         this.hexString = ""
         this.humanReadable = null
+        this.tags = hexes.map(h => h.humanReadable)
 
         for (const hex of hexes) {
             this.hexString += hex.hex
@@ -83,6 +84,7 @@ class HexSpeakData {
     toResult() {
         const number = new GeneratedNumber(this.number, `spells "${this.humanReadable}" in hexspeak`)
         number.setLabel(`0x${this.hexString}`)
+        number.addTags(...this.tags)
         return number
     }
 }

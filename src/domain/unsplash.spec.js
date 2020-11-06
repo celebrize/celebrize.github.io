@@ -46,4 +46,22 @@ describe('isMatch', () => {
 
         expect(unsplash.isMatch(anniversary)).toBe(false)
     })
+    test('it returns true if it matches any tag', () => {
+        const unsplash = new Unsplash("", "", "", "", "foo", "bar", "baz")
+        const number = new GeneratedNumber(42, "")
+        const date = new GeneratedDate(new Date(), "mock")
+        date.addTags("baz")
+        const anniversary = new Anniversary(number, date)
+
+        expect(unsplash.isMatch(anniversary)).toBe(true)
+    })
+    test('it returns true if it matches no tag', () => {
+        const unsplash = new Unsplash("", "", "", "", "foo", "bar", "baz")
+        const number = new GeneratedNumber(42, "")
+        const date = new GeneratedDate(new Date(), "mock")
+        date.addTags("blubber")
+        const anniversary = new Anniversary(number, date)
+
+        expect(unsplash.isMatch(anniversary)).toBe(false)
+    })
 })

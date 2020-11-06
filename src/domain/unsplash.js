@@ -4,7 +4,7 @@ const fit = "crop"
 const crop = "faces,center"
 
 class Unsplash {
-    constructor(id, authorName, hotlinkId, color, onlyWhen) {
+    constructor(id, authorName, hotlinkId, color, ...onlyWhen) {
         this.id = id
         this.authorName = authorName
         this.hotlinkId = hotlinkId
@@ -31,12 +31,14 @@ class Unsplash {
     }
     // return true if it is a perfect match, false if it is no match at all, null in all other cases
     isMatch(anniversary) {
-        if (typeof(this.onlyWhen) === 'number') {
-            return anniversary.getNumber() === this.onlyWhen
-        } else if (typeof(this.onlyWhen) === 'string') {
-            return anniversary.hasTag(this.onlyWhen)
-        }
-        return null
+        return this.onlyWhen.reduce((ret, onlyWhen) => {
+            if (typeof(onlyWhen) === 'number') {
+                return ret || anniversary.getNumber() === onlyWhen
+            } else if (typeof(onlyWhen) === 'string') {
+                return ret || anniversary.hasTag(onlyWhen)
+            }
+            return ret || null
+        }, null)
     }
 
 }

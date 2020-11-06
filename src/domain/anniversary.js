@@ -59,7 +59,7 @@ class Anniversary {
     }
 
     hasTag(tag) {
-        return this.date.hasTag(tag)
+        return this.date.hasTag(tag) || this.number.hasTag(tag)
     }
 }
 
