@@ -6,7 +6,7 @@ const days = new PeriodGenerator((now, number) => {
     date.setDate(now.getDate() + Number(number))
 
     const genDate = new GeneratedDate(date, "days")
-    genDate.addTags(PeriodGenerator.DAYISH)
+    genDate.addTags("days")
     genDate.setPrecision(PeriodGenerator.DAYS)
     return genDate
 })
@@ -16,7 +16,7 @@ const weeks = new PeriodGenerator((now, number) => {
     date.setDate(now.getDate() + Number(number) * 7)
 
     const genDate = new GeneratedDate(date, "weeks")
-    genDate.addTags(PeriodGenerator.WEEKISH)
+    genDate.addTags("weeks")
     genDate.setPrecision(PeriodGenerator.DAYS)
     return genDate
 })
@@ -26,7 +26,7 @@ const months = new PeriodGenerator((now, number) => {
     date.setMonth(date.getMonth() + Number(number))
 
     const genDate = new GeneratedDate(date, "months")
-    genDate.addTags(PeriodGenerator.MONTHISH)
+    genDate.addTags("months")
     genDate.setPrecision(PeriodGenerator.DAYS)
     return genDate
 }, "")
@@ -36,7 +36,7 @@ const years = new PeriodGenerator((now, number) => {
     date.setFullYear(date.getFullYear() + Number(number))
 
     const genDate = new GeneratedDate(date, "years")
-    genDate.addTags(PeriodGenerator.YEARISH)
+    genDate.addTags("years")
     genDate.setPrecision(PeriodGenerator.DAYS)
     return genDate
 }, "years")

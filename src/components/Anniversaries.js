@@ -19,7 +19,7 @@ function Anniversaries(props) {
     if(props.birthday) {
         const now = new Date()
         const min = new Date(now)
-        min.setMonth(min.getMonth() - 1)
+        min.setDate(min.getDate() - 8)
         const max = new Date(now)
         max.setMonth(max.getMonth() + 6)
 
@@ -30,12 +30,14 @@ function Anniversaries(props) {
         const hexspeak = require('../numbers/hexspeak.js')
         const decimalPatterns = require('../numbers/decimal_patterns')
         const basicMath = require('../numbers/math_basic')
+        const relevantNumbers = require('../numbers/relevant_numbers')
         calculator.addNumberGenerators(Object.values(digits))
         calculator.addNumberGenerator(fibonacci)
         calculator.addNumberGenerators(Object.values(roundNumbers))
         calculator.addNumberGenerator(hexspeak)
         calculator.addNumberGenerators(Object.values(decimalPatterns))
         calculator.addNumberGenerators(Object.values(basicMath))
+        calculator.addNumberGenerator(relevantNumbers)
 
         const clockPeriods = require('../periods/clock.js')
         const calendarPeriods = require('../periods/calendar.js')
@@ -48,6 +50,7 @@ function Anniversaries(props) {
 
         return (
           <Grid container className={classes.root} spacing={spacing} justify="center">
+            {justPassed.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
             {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
           </Grid>
         )

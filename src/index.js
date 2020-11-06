@@ -5,6 +5,7 @@ import 'typeface-roboto';
 import * as serviceWorker from './serviceWorker';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
+// poor mans page switch
 ReactDOM.render(
   <React.StrictMode>
     <CssBaseline />

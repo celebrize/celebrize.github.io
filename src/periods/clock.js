@@ -6,7 +6,7 @@ const seconds = new PeriodGenerator((now, number) => {
     date.setTime(now.getTime() + Number(number)*1000)
     
     const genDate = new GeneratedDate(date, "seconds")
-    genDate.addTags(PeriodGenerator.SECONDISH)
+    genDate.addTags("seconds")
     return genDate
 })
 
@@ -15,7 +15,7 @@ const minutes = new PeriodGenerator((now, number) => {
     date.setMinutes(date.getMinutes() + Number(number))
     
     const genDate = new GeneratedDate(date, "minutes")
-    genDate.addTags(PeriodGenerator.MINUTISH)
+    genDate.addTags("minutes")
     return genDate
 })
 
@@ -24,7 +24,7 @@ const hours = new PeriodGenerator((now, number) => {
     date.setHours(date.getHours() + Number(number))
     
     const genDate = new GeneratedDate(date, "hours")
-    genDate.addTags(PeriodGenerator.HOURISH)
+    genDate.addTags("hours")
     return genDate
 })
 

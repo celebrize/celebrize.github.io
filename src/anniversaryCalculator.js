@@ -38,7 +38,7 @@ class AnniversaryCalculator {
 
     addNumberGenerator(generator) {
         // @TODO: validate
-        this.numberGenerators.push(generator)   
+        this.numberGenerators.push(generator)
     }
 
     addNumberGenerators(generators) {

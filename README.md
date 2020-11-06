@@ -76,3 +76,7 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 * "This day has the exact distance from your date of birth as the sinking of the titanic"
 * "9/11 has the same distance from today as to your date of birth"
 * "As of today Uranium-238 has decayed to 20% of its radioactivity as it had on your day of birth"
+
+````bash
+curl -s "https://api.unsplash.com/collections/58205561/photos?client_id=client_id&per_page=30" | jq --raw-output '.[] | {id: .id, name: .user.name, link: (.urls.raw|match("photo-(.*)\\?").captures[0].string), color: .color} | "new Unsplash(\"\(.id)\", \"\(.name)\", \"\(.link)\", \"\(.color)\")," '
+````

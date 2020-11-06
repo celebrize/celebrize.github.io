@@ -15,9 +15,10 @@ const lunarMonths = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
 
-    const genDate = new GeneratedDate(date, "lunar month")
+    const genDate = new GeneratedDate(date, "lunar months")
     genDate.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
     genDate.addTags(PeriodGenerator.MONTHISH)
+    genDate.addTags("moon")
     return genDate
 })
 
@@ -30,6 +31,7 @@ const lunarOrbits = new PeriodGenerator((now, number) => {
     const genDate = new GeneratedDate(date, "lunar orbits")
     genDate.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
     genDate.addTags(PeriodGenerator.MONTHISH)
+    genDate.addTags("moon")
     return genDate
 })
 
@@ -66,6 +68,7 @@ class Celestial {
             const genDate = new GeneratedDate(date, `${this.name} years`)
             genDate.setHelpText(`orbits of ${this.name} around the sun`)
             genDate.addTags(PeriodGenerator.MONTHISH)
+            genDate.addTags(this.name)
             return genDate
         }
         return new PeriodGenerator(fnc)
@@ -78,6 +81,7 @@ class Celestial {
             const genDate = new GeneratedDate(date, `${this.name} days`)
             genDate.setHelpText(`day-night cycles as seen on ${this.name}`)
             genDate.addTags(PeriodGenerator.DAYISH)
+            genDate.addTags(this.name)
             return genDate
         }
         return new PeriodGenerator(fnc)

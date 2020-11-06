@@ -12,6 +12,10 @@ class Anniversary {
         return this.date.getDate().getTime()
     }
 
+    getNumber() {
+        return this.number.getNumber()
+    }
+    
     getNumberLabel() {
         return this.number.toString()
     }
@@ -52,6 +56,10 @@ class Anniversary {
         }
         hash += 0xefffffff
         return hash;
+    }
+
+    hasTag(tag) {
+        return this.date.hasTag(tag)
     }
 }
 
