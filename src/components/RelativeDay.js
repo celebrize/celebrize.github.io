@@ -12,7 +12,7 @@ function RelativeDay(props) {
             nextWeek: '[This] dddd',
             lastDay: '[Yesterday]',
             lastWeek: '[Last] dddd',
-            sameElse: 'MMMM Do YYYY (dddd)',
+            sameElse: 'LL (dddd)',
         })}</span>
     )
 }

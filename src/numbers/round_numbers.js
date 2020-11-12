@@ -1,13 +1,13 @@
 const GeneratedNumber = require('../domain/generated_number')
 const NumberGenerator = require('../domain/number_generator')
 
-function generatorForBase(base, labelFunc, helpFunc) {
+function generatorForBase(base, labelFunc, helpFunc, oddity) {
     return new NumberGenerator(function* () {
         let number = 1
         let exponent = 0
         while (true) {
             const value = number * Math.pow(base, exponent)
-            const gen_number = new GeneratedNumber(value, helpFunc ? helpFunc(value) : null)
+            const gen_number = new GeneratedNumber(value, helpFunc ? helpFunc(value) : null, oddity)
             if(labelFunc) {
                 gen_number.setLabel(labelFunc(value, exponent))
             }
@@ -36,8 +36,8 @@ const decToSuper = (char) => {
 }
 
 module.exports = {
-    binary: generatorForBase(2, (_, exp) => `2${[...exp.toString()].map(c => decToSuper(c)).join("")}`, (i) => `a round binary number`),
-    octal: generatorForBase(8, (i) => `[${i.toString(8)}]₈`, (i) => `a round octal number`),
-    decimal: generatorForBase(10),
-    hexadecimal: generatorForBase(16, i => `0x${i.toString(16).toUpperCase()}`, i => `a round hexadecimal number`),
+    binary: generatorForBase(2, (_, exp) => `2${[...exp.toString()].map(c => decToSuper(c)).join("")}`, (i) => `a round binary number`, 1.2),
+    octal: generatorForBase(8, (i) => `[${i.toString(8)}]₈`, (i) => `a round octal number`, 2),
+    decimal: generatorForBase(10, null, null, 0.8),
+    hexadecimal: generatorForBase(16, i => `0x${i.toString(16).toUpperCase()}`, i => `a round hexadecimal number`, 1.2),
 }

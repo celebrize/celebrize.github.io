@@ -6,7 +6,7 @@ function generatorForNumber(number, label) {
     return new NumberGenerator(function* () {
         let len = 3
         while (len <= number.length) {
-            yield new GeneratedNumber(BigInt(number.substring(0, len)), `These are the first ${len} digits of ${label}`)
+            yield new GeneratedNumber(BigInt(number.substring(0, len)), `These are the first ${len} digits of ${label}`, 2)
             len++
         }
     })

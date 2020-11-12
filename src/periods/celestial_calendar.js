@@ -15,7 +15,7 @@ const lunarMonths = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
 
-    const genDate = new GeneratedDate(date, "lunar months")
+    const genDate = new GeneratedDate(date, "lunar months", 1.2)
     genDate.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
     genDate.addTags(PeriodGenerator.MONTHISH)
     genDate.addTags("moon")
@@ -28,7 +28,7 @@ const lunarOrbits = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
 
-    const genDate = new GeneratedDate(date, "lunar orbits")
+    const genDate = new GeneratedDate(date, "lunar orbits", 1.5)
     genDate.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
     genDate.addTags(PeriodGenerator.MONTHISH)
     genDate.addTags("moon")
@@ -60,12 +60,12 @@ class Celestial {
     //         return date
     //     }
     // }
-    getOrbitCalculation() {
+    getOrbitCalculation(oddity) {
         const fnc = (now, number) => {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.orbitTime * 1000)
 
-            const genDate = new GeneratedDate(date, `${this.name} years`)
+            const genDate = new GeneratedDate(date, `${this.name} years`, oddity)
             genDate.setHelpText(`orbits of ${this.name} around the sun`)
             genDate.addTags(PeriodGenerator.MONTHISH)
             genDate.addTags(this.name)
@@ -73,12 +73,12 @@ class Celestial {
         }
         return new PeriodGenerator(fnc)
     }
-    getDayCalculation() {
+    getDayCalculation(oddity) {
         const fnc = (now, number) => {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.dayNightCycleTime * 1000)
 
-            const genDate = new GeneratedDate(date, `${this.name} days`)
+            const genDate = new GeneratedDate(date, `${this.name} days`, oddity)
             genDate.setHelpText(`day-night cycles as seen on ${this.name}`)
             genDate.addTags(PeriodGenerator.DAYISH)
             genDate.addTags(this.name)
@@ -108,21 +108,21 @@ const neptune = new Celestial("neptune", 0.67125 * days, 164.79132 * years)
 module.exports = {
     lunarMonths,
     lunarOrbits,
-    mercuryDays: mercury.getDayCalculation(),
-    mercuryYears: mercury.getOrbitCalculation(),
+    mercuryDays: mercury.getDayCalculation(1.5),
+    mercuryYears: mercury.getOrbitCalculation(1.5),
     // these periods are a bit too absurd for my taste for now
     // mercuryRotations: mercury.getSiderealCalculation(),
     // mercuryConstellation: mercury.getConstellationCalculation(),
-    venusDays: venus.getDayCalculation(),
-    venusYears: venus.getOrbitCalculation(),
-    marsDays: mars.getDayCalculation(),
-    marsYears: mars.getOrbitCalculation(),
-    jupiterDays: jupiter.getDayCalculation(),
-    jupiterYears: jupiter.getOrbitCalculation(),
-    saturnDays: saturn.getDayCalculation(),
-    saturnYears: saturn.getOrbitCalculation(),
-    uranusDays: uranus.getDayCalculation(),
-    uranusYears: uranus.getOrbitCalculation(),
-    neptuneDays: neptune.getDayCalculation(),
-    neptuneYears: neptune.getOrbitCalculation(),
+    venusDays: venus.getDayCalculation(1.2),
+    venusYears: venus.getOrbitCalculation(1.2),
+    marsDays: mars.getDayCalculation(1.1),
+    marsYears: mars.getOrbitCalculation(1.1),
+    jupiterDays: jupiter.getDayCalculation(1.5),
+    jupiterYears: jupiter.getOrbitCalculation(1.5),
+    saturnDays: saturn.getDayCalculation(1.5),
+    saturnYears: saturn.getOrbitCalculation(1.5),
+    uranusDays: uranus.getDayCalculation(2),
+    uranusYears: uranus.getOrbitCalculation(2),
+    neptuneDays: neptune.getDayCalculation(2),
+    neptuneYears: neptune.getOrbitCalculation(2),
 }

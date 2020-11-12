@@ -1,8 +1,9 @@
 class GeneratedNumber {
-    constructor(number, helpText) {
+    constructor(number, helpText, oddity) {
         this.number = number
         this.helpText = helpText
         this.tags = []
+        this.oddity = oddity || 1
     }
 
     setLabel(label) {
@@ -23,6 +24,13 @@ class GeneratedNumber {
         } else {
             return `${this.number}`
         }
+    }
+
+    setOddity(oddity) {
+        this.oddity = oddity
+    }
+    getOddity() {
+        return this.oddity
     }
 
     addTags(...tags) {

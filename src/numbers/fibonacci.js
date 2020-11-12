@@ -10,7 +10,7 @@ function* fibonacci() {
         previous = current
         current = current + oldPrevious
         index++
-        yield new GeneratedNumber(current, `${current} is the ${index}th Fibonacci number`)
+        yield new GeneratedNumber(current, `${current} is the ${index}th Fibonacci number`, 3)
     }
 }
 

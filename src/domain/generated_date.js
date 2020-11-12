@@ -1,9 +1,10 @@
 class GeneratedDate {
-    constructor(date, label) {
+    constructor(date, label, oddity) {
         this.date = date
         this.label = label
         this.tags = []
         this.precision = GeneratedDate.SECONDS
+        this.oddity = oddity || 1
     }
 
     getDate() {
@@ -20,6 +21,13 @@ class GeneratedDate {
 
     getHelpText() {
         return this.helpText
+    }
+
+    setOddity(oddity) {
+        this.oddity = oddity
+    }
+    getOddity() {
+        return this.oddity
     }
 
     addTags(...tags) {

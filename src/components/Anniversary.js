@@ -1,103 +1,46 @@
 import React, { useState } from 'react';
 
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
+import { Grid, Card } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import {amber, blue, blueGrey, brown, common, cyan, deepOrange, deepPurple, green, grey, indigo, lightBlue, lightGreen, lime, orange, pink, purple, red, teal, yellow} from '@material-ui/core/colors';
-import RelativeDay from './RelativeDay';
-import IconButton from '@material-ui/core/IconButton';
-import InfoIcon from '@material-ui/icons/Info';
-import DownloadIcon from '@material-ui/icons/Save';
-import BackIcon from '@material-ui/icons/Undo';
-import TimePeriod from '../domain/period_generator';
 import images from '../data/images';
+import { useTheme } from '@material-ui/styles';
+import AnniversaryPatch from './AnniversaryPatch';
+import AnniversaryFront from './AnniversaryFront';
+import AnniversaryBack from './AnniversaryBack';
 
 const colors = [
     amber, blue, blueGrey, brown, common, cyan, deepOrange,
     deepPurple, green, grey, indigo, lightBlue, lightGreen,
     lime, orange, pink, purple, red, teal, yellow
 ]
-const tileWidth = 268
+const tileWidth = 400
 const spacing = 6
-const tileHeight = 268
+const tileHeight = 400
 
 const useStyles = makeStyles((theme) => {
+    console.log(theme)
     const styles = {
+        spacer: {
+            // makes sure the boxes are square
+            display: "block",
+            paddingBottom: "100%",
+            width: "100%",
+        },
+        img: {
+            // the image is positioned absolutely, so the box height is determined by .square
+            position: "absolute",
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0,
+        },
         tile: {
             position: "relative",
-            height: tileHeight,
             color: "#fff",
             alignItems: "center",
-
-        },
-        backTileBar: {
             height: "100%",
-        },
-        backTileBarSubtitle: {
-            lineHeight: "1rem",
-            whiteSpace: "initial",
-        },
-        tileInfoRoot: {
-            display: "flex",
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-            alignItems: "center",
-            padding: "16px 0 16px 16px",
-        },
-        flex: {
-            display: "flex",
-            position: "absolute",
-            left: 0,
-            right: 0,
-            bottom: 0,
-            alignItems: "center",
-            padding: "16px 0 16px 16px",
-        },
-        tileInfoWrap: {
-            flexGrow: 1,
-        },
-        tileInfoButton: {
-            color: 'rgba(255, 255, 255, 0.5)',
-        },
-        tileBacksideRoot: {
-            position: "absolute",
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.75)",
-            padding: "16px",
-        },
-        title: {
-            fontSize: "1rem",
-            lineHeight: "1.5rem",
-            flexGrow: "1",
-            color: '#fff',
-            overflow: "hidden",
-        },
-        subtitle: {
-            fontSize: "0.75rem",
-            lineHeight: "1.5em",
-            color: '#fff',
-        },
-        attribution: {
-            fontSize: "0.6rem",
-            lineHeight: "1.2em",
-            color: '#999',
-            '& a': {
-                color: '#999',
-                textDecoration: "none",
-                fontWeight: "bold",
-                '&:hover, &:focus': {
-                    color: "#ccc",
-                }
-            },
-        },
-        mb: {
-            marginBottom: "0.5rem",
+
         },
     }
 
@@ -136,8 +79,10 @@ function Anniversary(props) {
     const [isFlipped, setFlipped] = useState(false)
 
     const classes = useStyles()
+    const theme = useTheme()
+
     const anniversary = props.anniversary
-    console.log(anniversary)
+    const highlightIf = props.highlightIf
     const id = anniversary.getStaticId()
     const colorId = Math.floor(id % colors.length)
     const image = selectImageFor(anniversary)
@@ -145,44 +90,19 @@ function Anniversary(props) {
     const flip = () => setFlipped(!isFlipped)
 
     return (
-        <Grid item xs="6">
-            <Paper className={classes.tile + " " + classes["tile-" + colorId]}>
-                <img src={image.getImageHotLink(tileWidth, tileHeight)} alt="" width="100%" height="100%" />
+        <Grid item xs="12" sm="6" md="4" zeroMinWidth>
+            <Card className={classes.tile + " " + classes["tile-" + colorId]}>
+                <div className={classes.spacer}></div>
+                <img className={classes.img} src={image.getImageHotLink(tileWidth, tileHeight)} alt="" width="100%" height="100%" />
                 { isFlipped ? (
-                    <div className={classes.tileBacksideRoot}>
-                        <div className={classes.title}>{anniversary.getPrecision() === TimePeriod.DAYS ? anniversary.getDateObject().toLocaleDateString() : anniversary.getDateObject().toLocaleString()}</div>
-                        <div className={classes.subtitle}>
-                            <strong>{anniversary.getNumberLabel()}</strong>{anniversary.getNumberHelpText() ? 
-                            (anniversary.hasDecimalLabel() ? ` = ${anniversary.getDecimalLabel()}` : "" ) + ": " + anniversary.getNumberHelpText() : ""}
-                        </div>
-                        <div className={classes.subtitle}>
-                            <strong>{anniversary.getPeriodLabel()}</strong>{anniversary.getPeriodHelpText() ? ": " + anniversary.getPeriodHelpText() : ""}
-                        </div>
-
-                        <div className={classes.flex}>
-                            <div className={classes.tileInfoWrap + " " + classes.attribution}>
-                                Photo by <a href={image.getImageHtmlLink()} target="blank">{image.getAuthorName()}</a> on <a href={image.getUnsplashHtmlLink()} target="_blank">Unsplash</a>
-                            </div>
-                            <IconButton aria-label="" className={classes.tileInfoButton}>
-                                <DownloadIcon />
-                            </IconButton>
-                            <IconButton aria-label="" className={classes.tileInfoButton} onClick={flip}>
-                                <BackIcon />
-                            </IconButton>
-                        </div>
-                    </div>
+                    <AnniversaryBack anniversary={anniversary} onClickBackButton={flip} image={image} />
                 ) : (
-                    <div className={classes.tileInfoRoot}>
-                        <div className={classes.tileInfoWrap}>
-                            <div className={classes.title}>{anniversary.getNumberLabel() + " " + anniversary.getPeriodLabel()}</div>
-                            <div className={classes.subtitle}><RelativeDay day={anniversary.getDateObject()} /></div>
-                        </div>
-                        <IconButton aria-label="" className={classes.tileInfoButton} onClick={flip}>
-                            <InfoIcon />
-                        </IconButton>
-                    </div>
+                    <React.Fragment>
+                        <AnniversaryPatch anniversary={anniversary} now={new Date()} highlightIf={highlightIf} />
+                        <AnniversaryFront anniversary={anniversary} onClickInfoButton={flip} />
+                    </React.Fragment>
                 )}
-            </Paper>
+            </Card>
         </Grid>
     )
 }

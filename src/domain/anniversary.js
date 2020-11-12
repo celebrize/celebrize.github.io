@@ -44,6 +44,10 @@ class Anniversary {
         return this.date.getPrecision()
     }
 
+    getOddity() {
+        return this.number.getOddity() * this.date.getOddity()
+    }
+
     getStaticId() {
         const base = `${this.getNumberLabel()} ${this.getPeriodLabel()}`
 

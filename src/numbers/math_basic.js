@@ -8,7 +8,7 @@ function* squares() {
         if (number === 1) {
             continue
         }
-        yield new GeneratedNumber(number * number, `square of the number ${number.toString()}`)
+        yield new GeneratedNumber(number * number, `square of the number ${number.toString()}`, 1.5)
     }
 }
 

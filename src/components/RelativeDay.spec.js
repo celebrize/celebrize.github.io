@@ -51,7 +51,7 @@ test('\"Saturday\" is independent of time', () => {
       const { getByText } = render(<RelativeDay now={now} day={date} />, {
         container: document.body.appendChild(root)
       });
-      expect(getByText('Saturday')).toBeInTheDocument()
+      expect(getByText('This Saturday')).toBeInTheDocument()
     }
   }
 })

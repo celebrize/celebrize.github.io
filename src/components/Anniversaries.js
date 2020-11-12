@@ -47,11 +47,12 @@ function Anniversaries(props) {
         calculator.addPeriods(Object.values(celestialCalendarPeriods))
 
         const [upcoming, justPassed] = calculator.calculate(props.birthday, now)
+        const lowestOddity = upcoming.reduce((min, current) => Math.min(min, current.getOddity()), 999)
 
         return (
           <Grid container className={classes.root} spacing={spacing} justify="center">
             {justPassed.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
-            {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
+            {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} highlightIf={lowestOddity * 1.1} />))}
           </Grid>
         )
     } else {

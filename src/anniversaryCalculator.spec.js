@@ -78,6 +78,33 @@ describe('anniversary calculator', () => {
         expect(justPassed.length).toEqual(2)
         expect(upcoming.length).toEqual(2)
     })
+    test('it takes the least odd date when there are duplicates', () => {
+        const birthday = new Date('1969-07-20 20:17:58Z')
+        const now = new Date('2020-01-01 12:00:00Z')
+
+        const min = new Date(now)
+        min.setMonth(min.getMonth())
+        const max = new Date(now)
+        max.setMonth(max.getMonth() + 12)
+        const anniversaryCalculator = new AnniversaryCalculator(min, max)
+        for (let i=10; i>0; i--) {
+            const numberGenerator = new NumberGenerator(function* () {
+                let number = 1
+                while (true) {
+                    yield new GeneratedNumber(number, `${i}`, i)
+                    number++
+                }
+            })
+            anniversaryCalculator.addNumberGenerator(numberGenerator)
+        }
+
+        anniversaryCalculator.addPeriod(years)
+
+        const [upcoming, _] = anniversaryCalculator.calculate(birthday, now)
+
+        expect(upcoming.length).toEqual(1)
+        expect(upcoming[0].number.getOddity()).toEqual(1)
+    })
     test('it classifies dates from earlier today as upcomming', () => {
         const birthday = new Date('1969-07-20 20:17:58') // @TODO: can we set a timezone?
         const now = new Date('2020-07-20 23:00:00')

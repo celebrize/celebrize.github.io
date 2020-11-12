@@ -82,7 +82,7 @@ class HexSpeakData {
     }
 
     toResult() {
-        const number = new GeneratedNumber(this.number, `spells "${this.humanReadable}" in hexspeak`)
+        const number = new GeneratedNumber(this.number, `spells "${this.humanReadable}" in hexspeak`, 2)
         number.setLabel(`0x${this.hexString}`)
         number.addTags(...this.tags)
         return number
