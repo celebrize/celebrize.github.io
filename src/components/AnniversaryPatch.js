@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { grey, pink, yellow} from '@material-ui/core/colors';
 import moment from 'moment';
+import { fade } from '@material-ui/core/styles/colorManipulator';
 
 const useStyles = makeStyles((theme) => {
     const styles = {
@@ -18,15 +19,15 @@ const useStyles = makeStyles((theme) => {
             fontWeight: "bold",
         },
         past: {
-            backgroundColor: grey[900],
+            backgroundColor: fade(grey[900], 0.75),
             color: theme.palette.getContrastText(grey[900]),
         },
         today: {
-            backgroundColor: pink.A400,
+            backgroundColor: fade(pink.A400, 0.75),
             color: theme.palette.getContrastText(pink.A400),
         },
         highlight: {
-            backgroundColor: yellow.A700,
+            backgroundColor: fade(yellow.A700, 0.75),
             color: theme.palette.getContrastText(yellow.A700),
         },
     }
