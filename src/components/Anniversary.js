@@ -15,7 +15,6 @@ const colors = [
     lime, orange, pink, purple, red, teal, yellow
 ]
 const tileWidth = 400
-const spacing = 6
 const tileHeight = 400
 
 const useStyles = makeStyles((theme) => {
@@ -90,7 +89,7 @@ function Anniversary(props) {
     const flip = () => setFlipped(!isFlipped)
 
     return (
-        <Grid item xs="12" sm="6" md="4" zeroMinWidth>
+        <Grid item xs={12} sm={6} md={4} zeroMinWidth>
             <Card className={classes.tile + " " + classes["tile-" + colorId]}>
                 <div className={classes.spacer}></div>
                 <img className={classes.img} src={image.getImageHotLink(tileWidth, tileHeight)} alt="" width="100%" height="100%" />

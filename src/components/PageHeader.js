@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => {
           backgroundSize: "cover",
           backgroundColor: theme.palette.primary.main,
           marginBottom: theme.spacing(2),
-          "& h1, & h2": {
+          "& h1, & p": {
             color: theme.palette.getContrastText(theme.palette.primary.main)
           },
         },
@@ -27,23 +27,25 @@ const useStyles = makeStyles((theme) => {
             minHeight: theme.breakpoints.values.xs,
           },
           [theme.breakpoints.up('sm')]: {
-            minHeight: theme.breakpoints.values.sm * 2/3,
+            minHeight: theme.breakpoints.values.sm * 0.75,
           },
           [theme.breakpoints.up('md')]: {
-            minHeight: theme.breakpoints.values.md / 2,
+            minHeight: theme.breakpoints.values.md * 0.75,
           }
         },
         headerBox: {
           overflow: "hidden",
           width: "100%",
           background: "rgba(0,0,0,0.75)",
+          borderRadius: "4px",
           padding: theme.spacing(2),
 
           [theme.breakpoints.only('xs')]: {
             width: "100%",
           },
           [theme.breakpoints.up('sm')]: {
-            width: theme.breakpoints.values.xs * 1.5,
+            width: theme.breakpoints.values.xs * 1.7,
+            margin: "0 auto",
           },
         },
         title: {
@@ -65,7 +67,7 @@ function PageHeader({title, subtitle, maxWidth, children}) {
                 <Grid container className={classes.headerGrid} justify="flex-start" alignItems="center">
                     <Grid item className={classes.headerBox}>
                         { title ? (<h1 className={classes.title}>{title}</h1>) : "" }
-                        { subtitle ? (<h2 className={classes.subtitle}>{subtitle}</h2>) : "" }
+                        { subtitle ? (<p className={classes.subtitle}>{subtitle}</p>) : "" }
                         {children}
                     </Grid>
                 </Grid>

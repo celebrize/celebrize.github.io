@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import MomentUtils from '@date-io/moment';
-import Anniversaries from './components/Anniversaries.js';
-import PageHeader from './components/PageHeader'
-import PageFooter from './components/PageFooter'
-import DateSelector from './components/DateSelector'
 import moment from 'moment';
 import momentDe from 'moment/locale/de'; // import needed to have the german translation available (aka: this import has side-effects)
 import momentEnGb from 'moment/locale/en-gb'; // import needed to have the english translation available (aka: this import has side-effects)
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
-import Container from '@material-ui/core/Container';
+import Index from './pages/Index'
 
 const myTheme = createMuiTheme({
   breakpoints: {
@@ -38,21 +40,25 @@ const useStyles = makeStyles((_) => {
 function App() {
   // @TODO: detect locale
   moment.locale("en-gb")
-
   const classes = useStyles()
-  const [birthday, setBirthday] = useState(null)
 
   return (
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <ThemeProvider theme={myTheme}>
       <div className={classes.root}>
-        <PageHeader maxWidth="lg" title="Celebrize – a reason to celebrate" subtitle="Find a Lorem ipsum sid dolor ahmet de consecuteur">
-          <DateSelector onDateChange={setBirthday} />
-        </PageHeader>
-        <Container maxWidth="lg">
-          <Anniversaries birthday={birthday} />
-        </Container>
-        <PageFooter maxWidth="lg" />
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Index />
+            </Route>
+            <Route path="/:date">
+              <Index />
+            </Route>
+            <Route path="*">
+              No match
+            </Route>
+          </Switch>
+        </Router>
       </div>
       </ThemeProvider>
     </MuiPickersUtilsProvider>
