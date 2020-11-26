@@ -3,11 +3,11 @@ import Anniversaries from '../components/Anniversaries'
 import PageHeader from '../components/PageHeader'
 import PageFooter from '../components/PageFooter'
 import DateSelector from '../components/DateSelector'
-import { Button, Container, Icon } from '@material-ui/core'
-import ShareIcon from '@material-ui/icons/Share'
+import { Container, Icon } from '@material-ui/core'
 import NotFound from './NotFound'
 import moment from 'moment'
 import { useParams, useHistory } from "react-router-dom";
+import Share from '../components/Share'
 
 
 const dateFormat = "YYYY-MM-DDTHH:mmZZ"
@@ -40,7 +40,6 @@ function Index() {
     return (<>
         <PageHeader maxWidth="lg" title="Celebrize – a reason to celebrate" subtitle="Enter your birthday or anniversary and see what you can celebrate in the next weeks.">
           <DateSelector minDate={minDate} maxDate={maxDate} defaultDate={birthday.isValid() ? birthday.toDate() : defaultDate} onDateChange={handleDateChange} />
-          <Button variant="contained" color="default" endIcon={<ShareIcon />} >Share</Button>
         </PageHeader>
         <Container maxWidth="lg">
           { birthday.isValid() ? (
@@ -50,6 +49,7 @@ function Index() {
           ) }
         </Container>
         <PageFooter maxWidth="lg" />
+        <Share />
     </>)
 }
 
