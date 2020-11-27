@@ -17,7 +17,7 @@ const colors = [
 const tileWidth = 400
 const tileHeight = 400
 
-const useStyles = makeStyles((theme) => {
+const useStyles = makeStyles(theme => {
     console.log(theme)
     const styles = {
         spacer: {

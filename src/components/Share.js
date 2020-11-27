@@ -62,7 +62,7 @@ function Share(props) {
                 icon={<FileCopyOutlined />}
                 tooltipTitle={copyOk === true ? "Ok" : (copyOk === false ? "Failed" : "Copy link to your clipboard")}
                 onClick={copyUriToClipboard}
-                TooltipClasses={{ tooltip: copyOk === true ? classes.tooltipOk : (copyOk === false ? classes.tooltipError : {}) }}
+                TooltipClasses={{ tooltip: copyOk === true ? classes.tooltipOk : (copyOk === false ? classes.tooltipError : undefined) }}
             />
         </SpeedDial>
     </>)

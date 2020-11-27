@@ -10,9 +10,6 @@ const useStyles = makeStyles((theme) => {
           backgroundSize: "cover",
           backgroundColor: theme.palette.primary.main,
           marginBottom: theme.spacing(2),
-          "& h1, & p": {
-            color: theme.palette.getContrastText(theme.palette.primary.main)
-          },
         },
         headerContainer: {
           [theme.breakpoints.only('xs')]: {
@@ -38,7 +35,7 @@ const useStyles = makeStyles((theme) => {
           width: "100%",
           background: "rgba(0,0,0,0.75)",
           borderRadius: "4px",
-          padding: theme.spacing(2),
+          padding: theme.spacing(3),
 
           [theme.breakpoints.only('xs')]: {
             width: "100%",
@@ -49,9 +46,11 @@ const useStyles = makeStyles((theme) => {
           },
         },
         title: {
-
+          marginTop: 0,
+          color: theme.palette.getContrastText(theme.palette.primary.main),
         },
         subtitle: {
+          color: theme.palette.getContrastText(theme.palette.primary.main),
           [theme.breakpoints.down('xs')]: {
             display: "none",
           },

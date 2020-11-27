@@ -68,19 +68,6 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
 
 
-# Ideas
-
-* use unsplash images to illustrate dates
-* "You can see light from Alpha Centaury from the day you were born" / "Life on Alpha Centauri would only now know of your existence right now"
-* "You could have watched the original Star Wars Trilogy 10000 times since your birth"
-* "This day has the exact distance from your date of birth as the sinking of the titanic"
-* "9/11 has the same distance from today as to your date of birth"
-* "As of today Uranium-238 has decayed to 20% of its radioactivity as it had on your day of birth"
-
-# TODO
-
-* tune oddity
-
 ````bash
 curl -s "https://api.unsplash.com/collections/58205561/photos?client_id=client_id&per_page=30" | jq --raw-output '.[] | {id: .id, name: .user.name, link: (.urls.raw|match("photo-(.*)\\?").captures[0].string), color: .color} | "new Unsplash(\"\(.id)\", \"\(.name)\", \"\(.link)\", \"\(.color)\")," '
 ````

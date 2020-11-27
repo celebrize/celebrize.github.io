@@ -14,6 +14,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core';
 
 import Index from './pages/Index'
+import About from './pages/dialog/About'
 
 const myTheme = createMuiTheme({
   breakpoints: {
@@ -50,6 +51,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Index />
+            </Route>
+            <Route path="/about">
+              <About />
             </Route>
             <Route path="/:date">
               <Index />
