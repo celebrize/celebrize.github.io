@@ -7,4 +7,4 @@ class PeriodGenerator {
         return this.generatorFnc(now, number)
     }
 }
-module.exports = PeriodGenerator
+export default PeriodGenerator

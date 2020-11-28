@@ -1,5 +1,5 @@
 
-const Anniversary = require('./domain/anniversary')
+import Anniversary from './domain/anniversary'
 
 const sortAnniversaryFnc = (a, b) => {
     return a.getTime() - b.getTime()
@@ -84,4 +84,4 @@ class AnniversaryCalculator {
     }
 }
 
-module.exports = AnniversaryCalculator
+export default AnniversaryCalculator

@@ -1,7 +1,7 @@
-const AnniversaryCalculator = require('./anniversaryCalculator.js')
-const {years, months} = require('./periods/calendar')
-const NumberGenerator = require('./domain/number_generator.js')
-const GeneratedNumber = require('./domain/generated_number.js')
+import AnniversaryCalculator from './anniversaryCalculator.js'
+import {years, months} from './periods/calendar'
+import NumberGenerator from './domain/number_generator.js'
+import GeneratedNumber from './domain/generated_number.js'
 
 // plain number generator that generates natural numbers
 const naturalNumberGenerator = new NumberGenerator(function* () {

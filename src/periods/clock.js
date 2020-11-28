@@ -1,5 +1,5 @@
-const PeriodGenerator = require('../domain/period_generator')
-const GeneratedDate = require('../domain/generated_date')
+import PeriodGenerator from '../domain/period_generator'
+import GeneratedDate from '../domain/generated_date'
 
 const seconds = new PeriodGenerator((now, number) => {
     const date = new Date()
@@ -28,7 +28,7 @@ const hours = new PeriodGenerator((now, number) => {
     return genDate
 })
 
-module.exports = {
+export {
     seconds,
     minutes,
     hours,

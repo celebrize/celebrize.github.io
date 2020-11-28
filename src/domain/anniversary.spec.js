@@ -1,6 +1,6 @@
-const Anniversary = require("./anniversary")
-const GeneratedNumber = require("./generated_number")
-const GeneratedDate = require("./generated_date")
+import Anniversary from './anniversary'
+import GeneratedNumber from './generated_number'
+import GeneratedDate from './generated_date'
 
 describe('getStaticId', () => {
     test('is a number that is consistent with its number and its time period', () => {

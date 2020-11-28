@@ -1,5 +1,5 @@
-const GeneratedNumber = require('../domain/generated_number')
-const NumberGenerator = require('../domain/number_generator')
+import GeneratedNumber from '../domain/generated_number'
+import NumberGenerator from '../domain/number_generator'
 
 function generatorForBase(base, labelFunc, helpFunc, oddity) {
     return new NumberGenerator(function* () {
@@ -35,9 +35,14 @@ const decToSuper = (char) => {
     }
 }
 
-module.exports = {
-    binary: generatorForBase(2, (_, exp) => `2${[...exp.toString()].map(c => decToSuper(c)).join("")}`, (i) => `a round binary number`, 1.2),
-    octal: generatorForBase(8, (i) => `[${i.toString(8)}]₈`, (i) => `a round octal number`, 2),
-    decimal: generatorForBase(10, null, null, 0.8),
-    hexadecimal: generatorForBase(16, i => `0x${i.toString(16).toUpperCase()}`, i => `a round hexadecimal number`, 1.2),
+const binary = generatorForBase(2, (_, exp) => `2${[...exp.toString()].map(c => decToSuper(c)).join("")}`, (i) => `a round binary number`, 1.2)
+const octal = generatorForBase(8, (i) => `[${i.toString(8)}]₈`, (i) => `a round octal number`, 2)
+const decimal = generatorForBase(10, null, null, 0.8)
+const hexadecimal = generatorForBase(16, i => `0x${i.toString(16).toUpperCase()}`, i => `a round hexadecimal number`, 1.2)
+
+export {
+    binary,
+    octal,
+    decimal,
+    hexadecimal,
 }

@@ -1,5 +1,5 @@
-const relevant_numbers = require('./relevant_numbers')
-const {generatorToNumbers} = require('./spec_helper.js')
+import relevant_numbers from './relevant_numbers'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('relevant numbers', () => {
     test('generates ascending numbers', () => {

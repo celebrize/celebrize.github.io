@@ -1,8 +1,8 @@
-const {
+import {
     seconds,
     minutes,
     hours,
-} = require('./clock.js')
+} from './clock.js'
 
 const now = new Date('1969-07-20 20:17:58Z')
 

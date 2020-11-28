@@ -8,4 +8,4 @@ class NumberGenerator {
     }
 }
 
-module.exports = NumberGenerator
+export default NumberGenerator

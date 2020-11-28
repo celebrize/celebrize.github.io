@@ -1,10 +1,10 @@
-const {
+import {
     alteration,
     repetition,
     streetAscending,
     streetDescending,
-} = require('./decimal_patterns.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+} from './decimal_patterns.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('street ascending generator', () => {
     test('generates correct, ascending numbers', () => {

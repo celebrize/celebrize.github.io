@@ -1,7 +1,7 @@
-const GeneratedNumber = require('../domain/generated_number')
-const NumberGenerator = require('../domain/number_generator')
+import GeneratedNumber from '../domain/generated_number'
+import NumberGenerator from '../domain/number_generator'
 
-function* repetition() {
+const repetition = new NumberGenerator(function*() {
     let length = 2
     let digit = 1
     while(true) {
@@ -18,9 +18,9 @@ function* repetition() {
             length++
         }
     }
-}
+})
 
-function* alteration() {
+const alteration = new NumberGenerator(function*() {
     let length = 4
     let digit1 = 1
     let digit2 = -1
@@ -45,9 +45,9 @@ function* alteration() {
 
         yield new GeneratedNumber(number, "a string of alternating digits", 2)
     }
-}
+})
 
-function* streetAscending() {
+const streetAscending = new NumberGenerator(function*() {
     let length = 5
     let first = 1
     while (true) {
@@ -68,9 +68,9 @@ function* streetAscending() {
             length++
         }
     }
-}
+})
 
-function* streetDescending() {
+const streetDescending = new NumberGenerator(function*() {
     let length = 5
     let first = 1
     while (true) {
@@ -91,11 +91,11 @@ function* streetDescending() {
             length++
         }
     }
-}
+})
 
-module.exports = {
-    alteration: new NumberGenerator(alteration),
-    repetition: new NumberGenerator(repetition),
-    streetAscending: new NumberGenerator(streetAscending),
-    streetDescending: new NumberGenerator(streetDescending),
+export {
+    alteration,
+    repetition,
+    streetAscending,
+    streetDescending,
 }

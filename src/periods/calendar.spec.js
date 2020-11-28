@@ -1,9 +1,9 @@
-const {
+import {
     days,
     weeks,
     months,
     years,
-} = require('./calendar.js')
+} from './calendar.js'
 
 const now = new Date('1969-07-20 20:17:58Z')
 

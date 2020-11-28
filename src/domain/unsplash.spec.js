@@ -1,7 +1,7 @@
-const Unsplash = require("./unsplash")
-const GeneratedNumber = require("./generated_number")
-const GeneratedDate = require("./generated_date")
-const Anniversary = require("./anniversary")
+import Unsplash from './unsplash'
+import GeneratedNumber from './generated_number'
+import GeneratedDate from './generated_date'
+import Anniversary from './anniversary'
 
 describe('isMatch', () => {
     test('returns null if there is nothing to match against', () => {

@@ -1,5 +1,5 @@
-const PeriodGenerator = require('../domain/period_generator')
-const GeneratedDate = require('../domain/generated_date')
+import PeriodGenerator from '../domain/period_generator'
+import GeneratedDate from '../domain/generated_date'
 
 /* Orbits crash course:
  * 
@@ -105,24 +105,41 @@ const saturn = new Celestial("saturn", 0.44401 * days, 29.447498 * years)
 const uranus = new Celestial("uranus", -0.71833 * days, 84.016846 * years)
 const neptune = new Celestial("neptune", 0.67125 * days, 164.79132 * years)
 
-module.exports = {
+const mercuryDays = mercury.getDayCalculation(1.5)
+const mercuryYears = mercury.getOrbitCalculation(1.5)
+// const mercuryRotations = mercury.getSiderealCalculation()
+// const mercuryConstellation = mercury.getConstellationCalculation()
+const venusDays = venus.getDayCalculation(1.2)
+const venusYears = venus.getOrbitCalculation(1.2)
+const marsDays = mars.getDayCalculation(1.1)
+const marsYears = mars.getOrbitCalculation(1.1)
+const jupiterDays = jupiter.getDayCalculation(1.5)
+const jupiterYears = jupiter.getOrbitCalculation(1.5)
+const saturnDays = saturn.getDayCalculation(1.5)
+const saturnYears = saturn.getOrbitCalculation(1.5)
+const uranusDays = uranus.getDayCalculation(2)
+const uranusYears = uranus.getOrbitCalculation(2)
+const neptuneDays = neptune.getDayCalculation(2)
+const neptuneYears = neptune.getOrbitCalculation(2)
+
+export {
     lunarMonths,
     lunarOrbits,
-    mercuryDays: mercury.getDayCalculation(1.5),
-    mercuryYears: mercury.getOrbitCalculation(1.5),
+    mercuryDays,
+    mercuryYears,
     // these periods are a bit too absurd for my taste for now
-    // mercuryRotations: mercury.getSiderealCalculation(),
-    // mercuryConstellation: mercury.getConstellationCalculation(),
-    venusDays: venus.getDayCalculation(1.2),
-    venusYears: venus.getOrbitCalculation(1.2),
-    marsDays: mars.getDayCalculation(1.1),
-    marsYears: mars.getOrbitCalculation(1.1),
-    jupiterDays: jupiter.getDayCalculation(1.5),
-    jupiterYears: jupiter.getOrbitCalculation(1.5),
-    saturnDays: saturn.getDayCalculation(1.5),
-    saturnYears: saturn.getOrbitCalculation(1.5),
-    uranusDays: uranus.getDayCalculation(2),
-    uranusYears: uranus.getOrbitCalculation(2),
-    neptuneDays: neptune.getDayCalculation(2),
-    neptuneYears: neptune.getOrbitCalculation(2),
+    // mercuryRotations,
+    // mercuryConstellation,
+    venusDays,
+    venusYears,
+    marsDays,
+    marsYears,
+    jupiterDays,
+    jupiterYears,
+    saturnDays,
+    saturnYears,
+    uranusDays,
+    uranusYears,
+    neptuneDays,
+    neptuneYears,
 }

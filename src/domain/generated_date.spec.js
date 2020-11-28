@@ -1,4 +1,4 @@
-const GeneratedDate = require("./generated_date")
+import GeneratedDate from './generated_date'
 
 describe('hasTag', () => {
     test('it returns false by default', () => {

@@ -1,4 +1,4 @@
-const {
+import {
     lunarMonths,
     lunarOrbits,
     mercuryDays,
@@ -15,7 +15,7 @@ const {
     uranusYears,
     neptuneDays,
     neptuneYears,
-} = require('./celestial_calendar.js')
+} from './celestial_calendar.js'
 
 const now = new Date('1969-07-20 20:17:58Z')
 

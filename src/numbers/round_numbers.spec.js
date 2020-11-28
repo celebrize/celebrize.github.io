@@ -1,10 +1,10 @@
-const {
+import {
     binary,
     octal,
     decimal,
     hexadecimal
-} = require('./round_numbers.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+} from './round_numbers.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('binary round number generator', () => {
     test('generates correct, ascending numbers', () => {

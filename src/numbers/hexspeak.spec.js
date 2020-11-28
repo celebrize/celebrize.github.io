@@ -1,5 +1,5 @@
-const hexspeak = require('./hexspeak.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+import hexspeak from './hexspeak.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('hexspeak number generator', () => {
     test('generates ascending numbers', () => {

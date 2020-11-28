@@ -1,5 +1,5 @@
-const fibonacci = require('./fibonacci.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+import fibonacci from './fibonacci.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('fibonacci number generator', () => {
     test('generates correct, ascending numbers', () => {

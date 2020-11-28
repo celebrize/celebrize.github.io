@@ -1,6 +1,6 @@
-const Unsplash = require("../domain/unsplash")
+import Unsplash from '../domain/unsplash'
 
-module.exports = [
+export default [
     new Unsplash("EO_XOsTSYpw", "mayte wisniewski", "1598372747425-94ecfdbbeeb4", "#FCFCFC", "cassette"),
     new Unsplash("bq_GrIelfxk", "lilzidesigns", "1573566472937-1fa7a6230e93", "#E4D3CA", "cassette"),
     new Unsplash("O453M2Liufs", "Luca Bravo", "1476514525535-07fb3b4ae5f1", "#F1F2F3", "boat", "boats"),

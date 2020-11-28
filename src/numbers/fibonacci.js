@@ -1,5 +1,5 @@
-const GeneratedNumber = require('../domain/generated_number')
-const NumberGenerator = require('../domain/number_generator')
+import GeneratedNumber from '../domain/generated_number'
+import NumberGenerator from '../domain/number_generator'
 
 function* fibonacci() {
     let previous = 0
@@ -14,4 +14,4 @@ function* fibonacci() {
     }
 }
 
-module.exports = new NumberGenerator(fibonacci)
+export default new NumberGenerator(fibonacci)

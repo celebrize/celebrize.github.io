@@ -43,4 +43,4 @@ class Unsplash {
 
 }
 
-module.exports = Unsplash
+export default Unsplash

@@ -1,7 +1,7 @@
-const {
+import {
     squares,
-} = require('./math_basic.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+} from './math_basic.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('square number generator', () => {
     test('generates correct, ascending numbers', () => {

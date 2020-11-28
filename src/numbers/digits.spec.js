@@ -1,9 +1,9 @@
-const {
+import {
     pi,
     e,
     goldenRatio,
-} = require('./digits.js')
-const {generatorToNumbers} = require('./spec_helper.js')
+} from './digits.js'
+import {generatorToNumbers} from './spec_helper.js'
 
 describe('pi digit generator', () => {
     test('generates correct, ascending numbers', () => {

@@ -13,6 +13,6 @@ function generatorToNumbers(generator, maxItems, start) {
     return items
 }
 
-module.exports = {
+export {
     generatorToNumbers
 }

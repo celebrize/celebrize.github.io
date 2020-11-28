@@ -43,4 +43,4 @@ class GeneratedNumber {
     }
 }
 
-module.exports = GeneratedNumber
+export default GeneratedNumber

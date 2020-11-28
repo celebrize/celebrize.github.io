@@ -1,8 +1,8 @@
-const GeneratedNumber = require('../domain/generated_number')
-const NumberGenerator = require('../domain/number_generator')
-const {decimal} = require('./round_numbers')
+import GeneratedNumber from '../domain/generated_number'
+import NumberGenerator from '../domain/number_generator'
+import {decimal} from './round_numbers'
 
-function* squares() {
+const squares = new NumberGenerator(function*() {
     for (const obj of decimal.getGeneratorFunction()) {
         const number = obj.number
         if (number === 1) {
@@ -10,8 +10,8 @@ function* squares() {
         }
         yield new GeneratedNumber(number * number, `square of the number ${number.toString()}`, 1.5)
     }
-}
+})
 
-module.exports = {
-    squares: new NumberGenerator(squares)
+export {
+    squares
 }

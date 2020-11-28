@@ -1,4 +1,4 @@
-const GeneratedNumber = require("./generated_number")
+import GeneratedNumber from './generated_number'
 
 describe('hasTag', () => {
     test('it returns false by default', () => {

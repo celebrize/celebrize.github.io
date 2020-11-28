@@ -1,9 +1,20 @@
 import React, { useState } from 'react';
 import AnniversaryCalculator from '../anniversaryCalculator';
 import Anniversary from './Anniversary';
-
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+
+
+import * as digits from '../numbers/digits.js'
+import fibonacci from '../numbers/fibonacci.js'
+import * as roundNumbers from '../numbers/round_numbers.js'
+import hexspeak from '../numbers/hexspeak.js'
+import * as decimalPatterns from '../numbers/decimal_patterns'
+import * as basicMath from '../numbers/math_basic'
+import relevantNumbers from '../numbers/relevant_numbers'
+import * as clockPeriods from '../periods/clock.js'
+import * as calendarPeriods from '../periods/calendar.js'
+import * as celestialCalendarPeriods from '../periods/celestial_calendar.js'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,13 +34,6 @@ function Anniversaries(props) {
     max.setMonth(max.getMonth() + 6)
 
     const calculator = new AnniversaryCalculator(min, max)
-    const digits = require('../numbers/digits.js')
-    const fibonacci = require('../numbers/fibonacci.js')
-    const roundNumbers = require('../numbers/round_numbers.js')
-    const hexspeak = require('../numbers/hexspeak.js')
-    const decimalPatterns = require('../numbers/decimal_patterns')
-    const basicMath = require('../numbers/math_basic')
-    const relevantNumbers = require('../numbers/relevant_numbers')
     calculator.addNumberGenerators(Object.values(digits))
     calculator.addNumberGenerator(fibonacci)
     calculator.addNumberGenerators(Object.values(roundNumbers))
@@ -38,9 +42,6 @@ function Anniversaries(props) {
     calculator.addNumberGenerators(Object.values(basicMath))
     calculator.addNumberGenerator(relevantNumbers)
 
-    const clockPeriods = require('../periods/clock.js')
-    const calendarPeriods = require('../periods/calendar.js')
-    const celestialCalendarPeriods = require('../periods/celestial_calendar.js')
     calculator.addPeriods(Object.values(clockPeriods))
     calculator.addPeriods(Object.values(calendarPeriods))
     calculator.addPeriods(Object.values(celestialCalendarPeriods))

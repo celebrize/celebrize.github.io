@@ -67,4 +67,4 @@ class Anniversary {
     }
 }
 
-module.exports = Anniversary
+export default Anniversary

@@ -1,5 +1,5 @@
-const PeriodGenerator = require('../domain/period_generator')
-const GeneratedDate = require('../domain/generated_date')
+import PeriodGenerator from '../domain/period_generator'
+import GeneratedDate from '../domain/generated_date'
 
 const days = new PeriodGenerator((now, number) => {
     const date = new Date(now)
@@ -41,7 +41,7 @@ const years = new PeriodGenerator((now, number) => {
     return genDate
 }, "years")
 
-module.exports = {
+export {
     days,
     weeks,
     months,

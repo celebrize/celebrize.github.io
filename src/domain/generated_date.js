@@ -59,4 +59,4 @@ GeneratedDate.WEEKISH = "weekish"
 GeneratedDate.MONTHISH = "monthish"
 GeneratedDate.YEARISH = "yearish"
 
-module.exports = GeneratedDate
+export default GeneratedDate
