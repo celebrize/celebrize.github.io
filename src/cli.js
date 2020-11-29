@@ -1,7 +1,7 @@
 import AnniversaryCalculator from './anniversaryCalculator.js'
 
 import * as digits from '../numbers/digits.js'
-import fibonacci from '../numbers/fibonacci.js'
+//import fibonacci from '../numbers/fibonacci.js'
 import * as roundNumbers from '../numbers/round_numbers.js'
 import hexspeak from '../numbers/hexspeak.js'
 import * as decimalPatterns from '../numbers/decimal_patterns'
@@ -20,7 +20,7 @@ const max = new Date(now)
 max.setMonth(max.getMonth() + 6)
 const calculator = new AnniversaryCalculator(min, max)
 calculator.addNumberGenerators(Object.values(digits))
-calculator.addNumberGenerator(fibonacci)
+//calculator.addNumberGenerator(fibonacci)
 calculator.addNumberGenerators(Object.values(roundNumbers))
 calculator.addNumberGenerator(hexspeak)
 calculator.addNumberGenerators(Object.values(decimalPatterns))
