@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AnniversaryCalculator from '../anniversaryCalculator';
 import Anniversary from './Anniversary';
+import AnniversaryInfo from './AnniversaryInfo'
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 
@@ -53,6 +54,7 @@ function Anniversaries(props) {
       <Grid container className={classes.root} spacing={spacing} justify="center">
         {justPassed.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} />))}
         {upcoming.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} highlightIf={lowestOddity * 1.1} />))}
+        <AnniversaryInfo />
       </Grid>
     )
 }
