@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
 import { Container, Typography, Link } from '@material-ui/core';
+import ExternalLink from '../components/ExternalLink';
 import About from '../pages/dialog/About'
 import Faq from '../pages/dialog/Faq'
 import { githubUri, xopnUri } from '../static'
@@ -47,8 +48,8 @@ function PageHeader({maxWidth, children}) {
             <Typography className= {classes.flex} variant="body1" component="nav">
               <Link className={classes.navItem} href="#" onClick={openAbout}>About</Link>
               <Link className={classes.navItem} href="#" onClick={openFaq}>Q&amp;A</Link>
-              <Link className={classes.navItem} href={githubUri} target="_blank" rel="noreferrer noopener">Contribute</Link>
-              <Typography className={classes.navItem} component="div">Made with ❤ by <Link href={xopnUri} target="_blank" rel="noreferrer noopener">xopn</Link></Typography>
+              <ExternalLink className={classes.navItem} href={githubUri}>Contribute</ExternalLink>
+              <Typography className={classes.navItem} component="div">Made with ❤ by <ExternalLink href={xopnUri}>xopn</ExternalLink></Typography>
             </Typography>
           </Container>
         </div>

@@ -6,6 +6,7 @@ import BackIcon from '@material-ui/icons/Undo';
 import TimePeriod from '../domain/period_generator';
 import MyMarkdown from './MyMarkdown';
 import moment from 'moment';
+import ExternalLink from './ExternalLink'
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -100,7 +101,7 @@ function AnniversaryBack({anniversary, image, onClickBackButton}) {
             </div>
             <div className={classes.footer}>
                 <Typography variant="body1" classes={{"body1": classes.footerText + " " + classes.attribution}}>
-                    Photo by <a href={image.getImageHtmlLink()} target="_blank" rel="noopener noreferrer">{image.getAuthorName()}</a> on <a href={image.getUnsplashHtmlLink()} target="_blank" rel="noopener noreferrer">Unsplash</a>
+                    Photo by <ExternalLink href={image.getImageHtmlLink()}>{image.getAuthorName()}</ExternalLink> on <ExternalLink href={image.getUnsplashHtmlLink()}>Unsplash</ExternalLink>
                 </Typography>
                 {/*<IconButton aria-label="" className={classes.footerBottom}>
                     <DownloadIcon />

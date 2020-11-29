@@ -3,6 +3,7 @@ import Dialog from './Dialog';
 import Avatar from '@material-ui/core/Avatar';
 import { makeStyles } from '@material-ui/core/styles';
 import Link from '@material-ui/core/Link';
+import ExternalLink from '../../components/ExternalLink'
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -33,7 +34,7 @@ function About({isOpen, handleClose}) {
             script never made it off of my computer.
         </p>
         <p>
-            Then recently I was looking for a project to learn the basics of <Link href="https://reactjs.org/" target="_blank" rel="nofollow noreferrer noopener">React</Link>.
+            Then recently I was looking for a project to learn the basics of <ExternalLink href="https://reactjs.org/">React</ExternalLink>.
             This old script popped back into my head. So I did a rewrite and added a few new calculations. And this is how the project was born.
         </p>
         <p><strong>
