@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
   Route,
   Link
@@ -47,7 +47,9 @@ function App() {
     <MuiPickersUtilsProvider utils={MomentUtils}>
       <ThemeProvider theme={myTheme}>
       <div className={classes.root}>
-        <Router>
+        <Router
+          hashType="noslash"
+        >
           <Switch>
             <Route exact path="/">
               <Index />
