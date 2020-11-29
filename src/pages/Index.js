@@ -8,6 +8,7 @@ import NotFound from './NotFound'
 import moment from 'moment'
 import { useParams, useHistory } from "react-router-dom";
 import Share from '../components/Share'
+import { appName, appTagLine } from '../static'
 
 
 const dateFormat = "YYYY-MM-DDTHH:mmZZ"
@@ -38,7 +39,7 @@ function Index() {
     defaultDate.setSeconds(0)
 
     return (<>
-        <PageHeader maxWidth="lg" title="Celebrize – a reason to celebrate" subtitle="Enter your birthday or anniversary and see what you can celebrate in the next weeks.">
+        <PageHeader maxWidth="lg" title={`${appName} – ${appTagLine}`} subtitle="Enter your birthday or anniversary and see what you can celebrate in the next weeks.">
           <DateSelector minDate={minDate} maxDate={maxDate} defaultDate={birthday.isValid() ? birthday.toDate() : defaultDate} onDateChange={handleDateChange} />
         </PageHeader>
         <Container maxWidth="lg">
