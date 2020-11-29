@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.js": "/anniversaries/static/js/main.c46532d6.chunk.js",
+    "main.js.map": "/anniversaries/static/js/main.c46532d6.chunk.js.map",
+    "runtime-main.js": "/anniversaries/static/js/runtime-main.1a3790dc.js",
+    "runtime-main.js.map": "/anniversaries/static/js/runtime-main.1a3790dc.js.map",
+    "static/css/2.e7722e5a.chunk.css": "/anniversaries/static/css/2.e7722e5a.chunk.css",
+    "static/js/2.3169b07b.chunk.js": "/anniversaries/static/js/2.3169b07b.chunk.js",
+    "static/js/2.3169b07b.chunk.js.map": "/anniversaries/static/js/2.3169b07b.chunk.js.map",
+    "index.html": "/anniversaries/index.html",
+    "precache-manifest.6b610447a8f9e7bd86de06c622edec76.js": "/anniversaries/precache-manifest.6b610447a8f9e7bd86de06c622edec76.js",
+    "service-worker.js": "/anniversaries/service-worker.js",
+    "static/css/2.e7722e5a.chunk.css.map": "/anniversaries/static/css/2.e7722e5a.chunk.css.map",
+    "static/js/2.3169b07b.chunk.js.LICENSE.txt": "/anniversaries/static/js/2.3169b07b.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/anniversaries/static/media/roboto-latin-900italic.ebf6d164.woff2"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.1a3790dc.js",
+    "static/css/2.e7722e5a.chunk.css",
+    "static/js/2.3169b07b.chunk.js",
+    "static/js/main.c46532d6.chunk.js"
+  ]
+}
