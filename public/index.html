@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Enter your birthday or anniversary and see what you can celebrate in the next weeks."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -24,11 +24,52 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Celebrize – a reason to celebrate</title>
+    <style>
+      /* taken from https://github.com/twbs/bootstrap/blob/main/scss/_spinners.scss */
+      @keyframes spinner-border {
+        to { transform: rotate(360deg); }
+      }
+      #loader {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-content: center;
+        min-height: 100vh;
+      }
+      #spinner {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        vertical-align: text-bottom;
+        border: 5px solid currentColor;
+        border-right-color: transparent;
+        border-radius: 50%;
+        animation: .75s linear infinite spinner-border;
+      }
+      .break {
+        /* forces newline in flexbox https://tobiasahlin.com/blog/flexbox-break-to-new-row/ */
+        flex-basis: 100%;
+        height: 0;
+      }
+      #label {
+        display: inline-block;
+        margin-top: 10px;
+        /* we could be lucky the user has Roboto installed */
+        font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+        font-size: 0.875rem;
+      }
+    </style>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div id="loader">
+        <div id="spinner" role="status"></div>
+        <div class="break"></div>
+        <div id="label">Loading App</div>
+      </div>
+    </div>
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

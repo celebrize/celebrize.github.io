@@ -23,7 +23,7 @@ function About({isOpen, handleClose}) {
         handleClose={handleClose}
         aria-labelledby="max-width-dialog-title"
       >
-        <Avatar variant="rounded" className={classes.avatar} alt="a plush penguin and Chris" src="/xopn.jpg" />
+        <Avatar variant="rounded" className={classes.avatar} alt="a plush penguin and Chris" src="xopn.jpg" />
         <p>This is me, Chris – right side of the picture.</p>
         <p>
             A few years back I asked myself the questions how many seconds I lived on this earth. After some programmer's
