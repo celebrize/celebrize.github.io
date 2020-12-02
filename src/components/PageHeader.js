@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTheme, makeStyles } from '@material-ui/core/styles';
-import { Container, Grid } from '@material-ui/core';
+import { Container, Grid, Typography } from '@material-ui/core';
+import { appName, appTagLine } from '../static'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -31,7 +33,6 @@ const useStyles = makeStyles((theme) => {
           }
         },
         headerBox: {
-          overflow: "hidden",
           width: "100%",
           background: "rgba(0,0,0,0.75)",
           borderRadius: "4px",
@@ -45,9 +46,19 @@ const useStyles = makeStyles((theme) => {
             margin: "0 auto",
           },
         },
-        title: {
-          marginTop: 0,
+        logo: {
+          marginTop: "-12%",
+          marginBottom: theme.spacing(2)
+        },
+        tagline:  {
           color: theme.palette.getContrastText(theme.palette.primary.main),
+          textAlign: "right",
+          fontWeight: "bold",
+          fontSize: "1.5rem",
+          marginTop: theme.spacing(-2),
+          [theme.breakpoints.down('xs')]: {
+            display: "none",
+          },
         },
         subtitle: {
           color: theme.palette.getContrastText(theme.palette.primary.main),
@@ -58,14 +69,15 @@ const useStyles = makeStyles((theme) => {
     }
   });
 
-function PageHeader({title, subtitle, maxWidth, children}) {
+function PageHeader({subtitle, maxWidth, children}) {
     const classes = useStyles()
     return (
         <div className={classes.headerBand}>
             <Container className={classes.headerContainer} maxWidth={maxWidth}>
                 <Grid container className={classes.headerGrid} justify="flex-start" alignItems="center">
                     <Grid item className={classes.headerBox}>
-                        { title ? (<h1 className={classes.title}>{title}</h1>) : "" }
+                        <Link to="/"><img className={classes.logo} src="logo.svg" width="100%" alt={appName} /></Link>
+                        <Typography component="div" variant="subtitle1" className={classes.tagline}>{appTagLine}</Typography>
                         { subtitle ? (<p className={classes.subtitle}>{subtitle}</p>) : "" }
                         {children}
                     </Grid>
