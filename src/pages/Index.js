@@ -9,6 +9,7 @@ import moment from 'moment'
 import { useParams, useHistory } from "react-router-dom";
 import Share from '../components/Share'
 import { appName, appTagLine } from '../static'
+import Testimonials from '../components/Testimonials'
 
 
 const dateFormat = "YYYY-MM-DDTHH:mmZZ"
@@ -46,7 +47,7 @@ function Index() {
           { birthday.isValid() ? (
             <Anniversaries birthday={birthday} />
           ) : (
-            "Todo"
+            <Testimonials />
           ) }
         </Container>
         <PageFooter maxWidth="lg" />
