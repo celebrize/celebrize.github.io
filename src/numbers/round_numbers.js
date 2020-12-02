@@ -7,7 +7,7 @@ function generatorForBase(base, labelFunc, helpFunc, oddity) {
         let exponent = 0
         while (true) {
             const value = number * Math.pow(base, exponent)
-            const gen_number = new GeneratedNumber(value, helpFunc ? helpFunc(value) : null, oddity)
+            const gen_number = new GeneratedNumber(value, helpFunc ? helpFunc(value) : null, number === 1 ? oddity * 0.7 : oddity)
             if(labelFunc) {
                 gen_number.setLabel(labelFunc(value, exponent))
             }
