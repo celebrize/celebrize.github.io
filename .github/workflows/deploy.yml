@@ -23,7 +23,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - name: Install Packages
-      run: npm install
+      run: npm ci
     - name: Build page
       run: npm run build
     - name: Deploy to gh-pages
