@@ -31,9 +31,10 @@ function DateSelector({defaultDate, minDate, maxDate, onDateChange}) {
     const [date, setDate] = useState(moment(defaultDate))
     const [time, setTime] = useState(moment(defaultDate))
 
-    const handleSubmit = () => {
-        const bday = new Date(date.toDate())
-        const timeObj = time.toDate()
+    const handleSubmit = (thisDate, thisTime) => {
+        // allow handing dates directly, because `setDate` and `setTime` work asynchronously and `onAccept` does not always pick up the new date
+        const bday = (thisDate || date).toDate()
+        const timeObj = (thisTime || time).toDate()
 
         bday.setHours(timeObj.getHours())
         bday.setMinutes(timeObj.getMinutes())
@@ -44,8 +45,8 @@ function DateSelector({defaultDate, minDate, maxDate, onDateChange}) {
     return (
       <Card className={classes.cta}>
         <Grid container spacing={1} justify="space-between" alignItems="flex-end">
-          <Grid item><KeyboardDatePicker className={classes.ctaDate} label="Date" value={date || defaultDate} minDate={minDate} maxDate={maxDate} openTo="year" variant="inline" onChange={setDate} format={moment.localeData().longDateFormat('L')} /></Grid>
-          <Grid item xs={8}><KeyboardTimePicker className={classes.ctaTime} label="Time" value={time} openTo="hours" variant="inline" onChange={setTime} format={moment.localeData().longDateFormat('LT')} ampm={false} /></Grid>
+          <Grid item><KeyboardDatePicker className={classes.ctaDate} label="Date" value={date || defaultDate} minDate={minDate} maxDate={maxDate} openTo="year" variant="dialog" onChange={setDate} onAccept={(date) => handleSubmit(date)} format={moment.localeData().longDateFormat('L')} /></Grid>
+          <Grid item xs={8}><KeyboardTimePicker className={classes.ctaTime} label="Time" value={time} openTo="hours" variant="dialog" onChange={setTime} onAccept={(time) => handleSubmit(null, time)} format={moment.localeData().longDateFormat('LT')} ampm={false} /></Grid>
           <Grid item xs={4}><Button className={classes.ctaButton} variant="contained" color="primary" onClick={handleSubmit}>Show</Button></Grid>
         </Grid>
       </Card>
