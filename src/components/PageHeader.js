@@ -62,9 +62,6 @@ const useStyles = makeStyles((theme) => {
         },
         subtitle: {
           color: theme.palette.getContrastText(theme.palette.primary.main),
-          [theme.breakpoints.down('xs')]: {
-            display: "none",
-          },
         },
     }
   });
