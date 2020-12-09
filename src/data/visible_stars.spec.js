@@ -124,5 +124,12 @@ describe("convertDesignation", () => {
             expect(convertDesignation(input)).toEqual(expectedOutput)
         })
     })
+})
 
+it("should be ordered ascending", () => {
+    let lastDistance = 0
+    VisibleStars.forEach(star => {
+        expect(star.distance).toBeGreaterThanOrEqual(lastDistance)
+        lastDistance = star.distance
+    })
 })

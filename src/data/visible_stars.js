@@ -258,6 +258,8 @@ data.split("\n").forEach(line => {
     stars.push(new CelestialFixedStar(name, rightAscension, declination, magnitude, distance, wikipediaId))
 })
 
+stars.sort((a, b) => a.distance - b.distance)
+
 export default stars
 
 export {
