@@ -47,7 +47,7 @@ function DateSelector({defaultDate, minDate, maxDate, onDateChange}) {
         <Grid container spacing={1} justify="space-between" alignItems="flex-end">
           <Grid item><KeyboardDatePicker className={classes.ctaDate} label="Date" value={date || defaultDate} minDate={minDate} maxDate={maxDate} openTo="year" variant="dialog" onChange={setDate} onAccept={(date) => handleSubmit(date)} format={moment.localeData().longDateFormat('L')} /></Grid>
           <Grid item xs={8}><KeyboardTimePicker className={classes.ctaTime} label="Time" value={time} openTo="hours" variant="dialog" onChange={setTime} onAccept={(time) => handleSubmit(null, time)} format={moment.localeData().longDateFormat('LT')} ampm={false} /></Grid>
-          <Grid item xs={4}><Button className={classes.ctaButton} variant="contained" color="primary" onClick={handleSubmit}>Show</Button></Grid>
+          <Grid item xs={4}><Button className={classes.ctaButton} variant="contained" color="primary" onClick={() => handleSubmit()}>Show</Button></Grid>
         </Grid>
       </Card>
     )
