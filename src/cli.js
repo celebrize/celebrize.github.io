@@ -31,5 +31,5 @@ calculator.addPeriods(Object.values(clockPeriods))
 calculator.addPeriods(Object.values(calendarPeriods))
 calculator.addPeriods(Object.values(celestialCalendarPeriods))
 
-const [upcoming, justPassed] = calculator.calculate(birthday, now)
-console.log(upcoming, justPassed)
+const anniversaries = calculator.calculate(birthday)
+console.log(anniversaries)

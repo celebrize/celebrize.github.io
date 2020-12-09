@@ -25,9 +25,8 @@ describe('anniversary calculator', () => {
         anniversaryCalculator.addNumberGenerator(naturalNumberGenerator)
         anniversaryCalculator.addPeriod(years)
 
-        const [upcoming, justPassed] = anniversaryCalculator.calculate(birthday, now)
-        expect(justPassed.length).toEqual(2)
-        expect(upcoming.length).toEqual(2)
+        const anniversaries = anniversaryCalculator.calculate(birthday)
+        expect(anniversaries.length).toEqual(4)
     })
     test('it sorts dates ascending', () => {
         const birthday = new Date('1969-07-20 20:17:58Z')
@@ -42,18 +41,11 @@ describe('anniversary calculator', () => {
         anniversaryCalculator.addPeriod(years)
         anniversaryCalculator.addPeriod(months)
 
-        const [upcoming, justPassed] = anniversaryCalculator.calculate(birthday, now)
+        const anniversaries = anniversaryCalculator.calculate(birthday)
 
-        expect(justPassed.length).toBeGreaterThan(2)
-        expect(upcoming.length).toBeGreaterThan(2)
+        expect(anniversaries.length).toBeGreaterThan(4)
 
-        justPassed.reduce((prev, cur) => {
-            if(prev !== undefined) {
-                expect(cur.getTime()).toBeGreaterThanOrEqual(prev.getTime())
-            }
-            return cur
-        })
-        upcoming.reduce((prev, cur) => {
+        anniversaries.reduce((prev, cur) => {
             if(prev !== undefined) {
                 expect(cur.getTime()).toBeGreaterThanOrEqual(prev.getTime())
             }
@@ -73,10 +65,9 @@ describe('anniversary calculator', () => {
         anniversaryCalculator.addNumberGenerator(naturalNumberGenerator) // add a second time to create duplicates
         anniversaryCalculator.addPeriod(years)
 
-        const [upcoming, justPassed] = anniversaryCalculator.calculate(birthday, now)
+        const anniversaries = anniversaryCalculator.calculate(birthday)
 
-        expect(justPassed.length).toEqual(2)
-        expect(upcoming.length).toEqual(2)
+        expect(anniversaries.length).toEqual(4)
     })
     test('it takes the least odd date when there are duplicates', () => {
         const birthday = new Date('1969-07-20 20:17:58Z')
@@ -100,26 +91,9 @@ describe('anniversary calculator', () => {
 
         anniversaryCalculator.addPeriod(years)
 
-        const [upcoming, _] = anniversaryCalculator.calculate(birthday, now)
+        const anniversaries = anniversaryCalculator.calculate(birthday)
 
-        expect(upcoming.length).toEqual(1)
-        expect(upcoming[0].number.getOddity()).toEqual(1)
-    })
-    test('it classifies dates from earlier today as upcomming', () => {
-        const birthday = new Date('1969-07-20 20:17:58') // @TODO: can we set a timezone?
-        const now = new Date('2020-07-20 23:00:00')
-
-        const min = new Date(now)
-        min.setMonth(min.getMonth() - 1)
-        const max = new Date(now)
-        max.setMonth(max.getMonth() + 1)
-        const anniversaryCalculator = new AnniversaryCalculator(min, max)
-        anniversaryCalculator.addNumberGenerator(naturalNumberGenerator)
-        anniversaryCalculator.addPeriod(years)
-
-        const [upcoming, justPassed] = anniversaryCalculator.calculate(birthday, now)
-
-        expect(justPassed.length).toEqual(0)
-        expect(upcoming.length).toEqual(1)
+        expect(anniversaries.length).toEqual(1)
+        expect(anniversaries[0].number.getOddity()).toEqual(1)
     })
 })

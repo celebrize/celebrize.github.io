@@ -1,10 +1,6 @@
 
 import Anniversary from './domain/anniversary'
 
-const sortAnniversaryFnc = (a, b) => {
-    return a.getTime() - b.getTime()
-}
-
 const deduplicateAnniversaries = sortedAnniversaries => {
     return sortedAnniversaries.reduce((list, cur) => {
         const last = list.length > 0 ? list.pop() : undefined
@@ -52,9 +48,8 @@ class AnniversaryCalculator {
         this.numberGenerators.push(...generators)
     }
 
-    calculate(birthday, now) {
-        const justPassed = []
-        const upcoming = []
+    calculate(birthday) {
+        const anniversaries = []
 
         for (const numberGenerator of this.numberGenerators) {
             for (const period of this.periods) {
@@ -65,10 +60,8 @@ class AnniversaryCalculator {
                     if (isNaN(date.getTime())) {
                         break
                     } else if (date > this.minDate) {
-                        if (date < now && !(date.getDate() === now.getDate() && date.getMonth() === now.getMonth() && date.getFullYear() === now.getFullYear())) {
-                            justPassed.push(new Anniversary(number, genDate))
-                        } else if (date < this.maxDate) {
-                            upcoming.push(new Anniversary(number, genDate))
+                        if (date < this.maxDate) {
+                            anniversaries.push(new Anniversary(number, genDate))
                         } else {
                             break
                         }
@@ -77,10 +70,11 @@ class AnniversaryCalculator {
             }
         }
 
-        upcoming.sort(sortAnniversaryFnc)
-        justPassed.sort(sortAnniversaryFnc)
+        anniversaries.sort((a, b) => {
+            return a.getTime() - b.getTime()
+        })
 
-        return [deduplicateAnniversaries(upcoming), deduplicateAnniversaries(justPassed)]
+        return deduplicateAnniversaries(anniversaries)
     }
 }
 
