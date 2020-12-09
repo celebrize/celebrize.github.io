@@ -1,15 +1,17 @@
-class Anniversary {
-    constructor(number, date) {
+// an anniversary that is represented by a number and a period, 
+// like "10 days", "20 months", "30 years", etc
+class NumberPeriodAnniversary {
+    constructor(number, period) {
         this.number = number
-        this.date = date
+        this.period = period
     }
 
     getDateObject() {
-        return this.date.getDate()
+        return this.period.getDate()
     }
 
     getTime() {
-        return this.date.getDate().getTime()
+        return this.period.getDate().getTime()
     }
 
     getNumber() {
@@ -33,19 +35,19 @@ class Anniversary {
     }
 
     getPeriodLabel() {
-        return this.date.getLabel()
+        return this.period.getLabel()
     }
 
     getPeriodHelpText() {
-        return this.date.getHelpText()
+        return this.period.getHelpText()
     }
 
     getPrecision() {
-        return this.date.getPrecision()
+        return this.period.getPrecision()
     }
 
     getOddity() {
-        return this.number.getOddity() * this.date.getOddity()
+        return this.number.getOddity() * this.period.getOddity()
     }
 
     getStaticId() {
@@ -63,8 +65,8 @@ class Anniversary {
     }
 
     hasTag(tag) {
-        return this.date.hasTag(tag) || this.number.hasTag(tag)
+        return this.period.hasTag(tag) || this.number.hasTag(tag)
     }
 }
 
-export default Anniversary
+export default NumberPeriodAnniversary

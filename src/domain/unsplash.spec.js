@@ -1,13 +1,13 @@
 import Unsplash from './unsplash'
 import GeneratedNumber from './generated_number'
-import GeneratedDate from './generated_date'
-import Anniversary from './anniversary'
+import GeneratedPeriod from './generated_period'
+import Anniversary from './anniversary/number_period_anniversary'
 
 describe('isMatch', () => {
     test('returns null if there is nothing to match against', () => {
         const unsplash = new Unsplash("", "", "", "")
         const number = new GeneratedNumber(1, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         const anniversary = new Anniversary(number, date)
 
         expect(unsplash.isMatch(anniversary)).toBe(null)
@@ -15,7 +15,7 @@ describe('isMatch', () => {
     test('it returns true if it matches a number', () => {
         const unsplash = new Unsplash("", "", "", "", 42)
         const number = new GeneratedNumber(42, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         const anniversary = new Anniversary(number, date)
 
         expect(unsplash.isMatch(anniversary)).toBe(true)
@@ -23,7 +23,7 @@ describe('isMatch', () => {
     test('it returns false if it does not match a number', () => {
         const unsplash = new Unsplash("", "", "", "", 42)
         const number = new GeneratedNumber(21, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         const anniversary = new Anniversary(number, date)
 
         expect(unsplash.isMatch(anniversary)).toBe(false)
@@ -31,7 +31,7 @@ describe('isMatch', () => {
     test('it returns true if it has a tag', () => {
         const unsplash = new Unsplash("", "", "", "", "foobar")
         const number = new GeneratedNumber(42, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         date.addTags("foobar")
         const anniversary = new Anniversary(number, date)
 
@@ -40,7 +40,7 @@ describe('isMatch', () => {
     test('it returns false if it does not have a tag', () => {
         const unsplash = new Unsplash("", "", "", "", "foobar")
         const number = new GeneratedNumber(42, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         date.addTags("baz")
         const anniversary = new Anniversary(number, date)
 
@@ -49,7 +49,7 @@ describe('isMatch', () => {
     test('it returns true if it matches any tag', () => {
         const unsplash = new Unsplash("", "", "", "", "foo", "bar", "baz")
         const number = new GeneratedNumber(42, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         date.addTags("baz")
         const anniversary = new Anniversary(number, date)
 
@@ -58,7 +58,7 @@ describe('isMatch', () => {
     test('it returns true if it matches no tag', () => {
         const unsplash = new Unsplash("", "", "", "", "foo", "bar", "baz")
         const number = new GeneratedNumber(42, "")
-        const date = new GeneratedDate(new Date(), "mock")
+        const date = new GeneratedPeriod(new Date(), "mock")
         date.addTags("blubber")
         const anniversary = new Anniversary(number, date)
 

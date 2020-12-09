@@ -1,5 +1,5 @@
 
-import Anniversary from './domain/anniversary'
+import NumberPeriodAnniversary from './domain/anniversary/number_period_anniversary'
 
 const deduplicateAnniversaries = sortedAnniversaries => {
     return sortedAnniversaries.reduce((list, cur) => {
@@ -61,7 +61,7 @@ class AnniversaryCalculator {
                         break
                     } else if (date > this.minDate) {
                         if (date < this.maxDate) {
-                            anniversaries.push(new Anniversary(number, genDate))
+                            anniversaries.push(new NumberPeriodAnniversary(number, genDate))
                         } else {
                             break
                         }

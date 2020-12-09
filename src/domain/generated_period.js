@@ -1,9 +1,9 @@
-class GeneratedDate {
+class GeneratedPeriod {
     constructor(date, label, oddity) {
         this.date = date
         this.label = label
         this.tags = []
-        this.precision = GeneratedDate.SECONDS
+        this.precision = GeneratedPeriod.SECONDS
         this.oddity = oddity || 1
     }
 
@@ -48,15 +48,15 @@ class GeneratedDate {
     }
 }
 
-GeneratedDate.SECONDS = "seconds"
-GeneratedDate.DAYS ="days"
+GeneratedPeriod.SECONDS = "seconds"
+GeneratedPeriod.DAYS ="days"
 
-GeneratedDate.SECONDISH = "secondish"
-GeneratedDate.MINUTISH = "minutish"
-GeneratedDate.HOURISH = "hourish"
-GeneratedDate.DAYISH = "dayish"
-GeneratedDate.WEEKISH = "weekish"
-GeneratedDate.MONTHISH = "monthish"
-GeneratedDate.YEARISH = "yearish"
+GeneratedPeriod.SECONDISH = "secondish"
+GeneratedPeriod.MINUTISH = "minutish"
+GeneratedPeriod.HOURISH = "hourish"
+GeneratedPeriod.DAYISH = "dayish"
+GeneratedPeriod.WEEKISH = "weekish"
+GeneratedPeriod.MONTHISH = "monthish"
+GeneratedPeriod.YEARISH = "yearish"
 
-export default GeneratedDate
+export default GeneratedPeriod

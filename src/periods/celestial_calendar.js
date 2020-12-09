@@ -1,5 +1,5 @@
 import PeriodGenerator from '../domain/period_generator'
-import GeneratedDate from '../domain/generated_date'
+import GeneratedPeriod from '../domain/generated_period'
 
 /* Orbits crash course:
  * 
@@ -15,7 +15,7 @@ const lunarMonths = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
 
-    const genDate = new GeneratedDate(date, "lunar months", 1.2)
+    const genDate = new GeneratedPeriod(date, "lunar months", 1.2)
     genDate.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
     genDate.addTags(PeriodGenerator.MONTHISH)
     genDate.addTags("moon")
@@ -28,7 +28,7 @@ const lunarOrbits = new PeriodGenerator((now, number) => {
     const date = new Date(now)
     date.setTime(now.getTime() + Number(number) * lunarSpan * 1000)
 
-    const genDate = new GeneratedDate(date, "lunar orbits", 1.5)
+    const genDate = new GeneratedPeriod(date, "lunar orbits", 1.5)
     genDate.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
     genDate.addTags(PeriodGenerator.MONTHISH)
     genDate.addTags("moon")
@@ -65,7 +65,7 @@ class Celestial {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.orbitTime * 1000)
 
-            const genDate = new GeneratedDate(date, `${this.name} years`, oddity)
+            const genDate = new GeneratedPeriod(date, `${this.name} years`, oddity)
             genDate.setHelpText(`orbits of ${this.name} around the sun`)
             genDate.addTags(PeriodGenerator.MONTHISH)
             genDate.addTags(this.name)
@@ -78,7 +78,7 @@ class Celestial {
             const date = new Date(now)
             date.setTime(now.getTime() + Number(number) * this.dayNightCycleTime * 1000)
 
-            const genDate = new GeneratedDate(date, `${this.name} days`, oddity)
+            const genDate = new GeneratedPeriod(date, `${this.name} days`, oddity)
             genDate.setHelpText(`day-night cycles as seen on ${this.name}`)
             genDate.addTags(PeriodGenerator.DAYISH)
             genDate.addTags(this.name)
