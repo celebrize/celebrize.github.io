@@ -1,4 +1,4 @@
-import PeriodGenerator from '../domain/period_generator'
+import Period from '../domain/period'
 import GeneratedPeriod from '../domain/generated_period'
 
 /* Orbits crash course:
@@ -9,7 +9,7 @@ import GeneratedPeriod from '../domain/generated_period'
  * - *synodic month* means an orbit relative to the orbitted object (for instance moon phases as seen from earth)
  */
 
-const lunarMonths = new PeriodGenerator((now, number) => {
+const lunarMonths = new Period((now, number) => {
     // @see https://en.wikipedia.org/wiki/Lunar_month#Synodic_month
     const lunarSpan = (((29 * 24) + 12) * 60 + 44) * 60 + 2.8016
     const date = new Date(now)
@@ -17,12 +17,12 @@ const lunarMonths = new PeriodGenerator((now, number) => {
 
     const genDate = new GeneratedPeriod(date, "lunar months", 1.2)
     genDate.setHelpText("a [synodic month](https://en.wikipedia.org/wiki/Lunar_month#Synodic_month) – the number of moon cycles visible from earth")
-    genDate.addTags(PeriodGenerator.MONTHISH)
+    genDate.addTags(Period.MONTHISH)
     genDate.addTags("moon")
     return genDate
 })
 
-const lunarOrbits = new PeriodGenerator((now, number) => {
+const lunarOrbits = new Period((now, number) => {
     // @see https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month
     const lunarSpan = (((27 * 24) + 7) * 60 + 43) * 60 + 11.6
     const date = new Date(now)
@@ -30,7 +30,7 @@ const lunarOrbits = new PeriodGenerator((now, number) => {
 
     const genDate = new GeneratedPeriod(date, "lunar orbits", 1.5)
     genDate.setHelpText("a [sidereal month](https://en.wikipedia.org/wiki/Lunar_month#Sidereal_month), the number of times the moon orbited the earth relative to the fixed stars")
-    genDate.addTags(PeriodGenerator.MONTHISH)
+    genDate.addTags(Period.MONTHISH)
     genDate.addTags("moon")
     return genDate
 })
@@ -67,11 +67,11 @@ class Celestial {
 
             const genDate = new GeneratedPeriod(date, `${this.name} years`, oddity)
             genDate.setHelpText(`orbits of ${this.name} around the sun`)
-            genDate.addTags(PeriodGenerator.MONTHISH)
+            genDate.addTags(Period.MONTHISH)
             genDate.addTags(this.name)
             return genDate
         }
-        return new PeriodGenerator(fnc)
+        return new Period(fnc)
     }
     getDayCalculation(oddity) {
         const fnc = (now, number) => {
@@ -80,11 +80,11 @@ class Celestial {
 
             const genDate = new GeneratedPeriod(date, `${this.name} days`, oddity)
             genDate.setHelpText(`day-night cycles as seen on ${this.name}`)
-            genDate.addTags(PeriodGenerator.DAYISH)
+            genDate.addTags(Period.DAYISH)
             genDate.addTags(this.name)
             return genDate
         }
-        return new PeriodGenerator(fnc)
+        return new Period(fnc)
     }
     // getConstellationCalculation() {
     //     const fnc = (now, number) => {

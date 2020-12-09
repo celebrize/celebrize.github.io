@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Typography, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BackIcon from '@material-ui/icons/Undo';
-import TimePeriod from '../domain/period_generator';
+import TimePeriod from '../domain/period';
 import MyMarkdown from './MyMarkdown';
 import moment from 'moment';
 import ExternalLink from './ExternalLink'

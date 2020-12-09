@@ -1,4 +1,4 @@
-class PeriodGenerator {
+class Period {
     constructor(generatorFnc) {
         this.generatorFnc = generatorFnc
     }
@@ -7,4 +7,4 @@ class PeriodGenerator {
         return this.generatorFnc(now, number)
     }
 }
-export default PeriodGenerator
+export default Period

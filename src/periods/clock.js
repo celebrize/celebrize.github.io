@@ -1,7 +1,7 @@
-import PeriodGenerator from '../domain/period_generator'
+import Period from '../domain/period'
 import GeneratedPeriod from '../domain/generated_period'
 
-const seconds = new PeriodGenerator((now, number) => {
+const seconds = new Period((now, number) => {
     const date = new Date()
     date.setTime(now.getTime() + Number(number)*1000)
     
@@ -10,7 +10,7 @@ const seconds = new PeriodGenerator((now, number) => {
     return genDate
 })
 
-const minutes = new PeriodGenerator((now, number) => {
+const minutes = new Period((now, number) => {
     const date = new Date(now)
     date.setMinutes(date.getMinutes() + Number(number))
     
@@ -19,7 +19,7 @@ const minutes = new PeriodGenerator((now, number) => {
     return genDate
 })
 
-const hours = new PeriodGenerator((now, number) => {
+const hours = new Period((now, number) => {
     const date = new Date(now)
     date.setHours(date.getHours() + Number(number))
     
