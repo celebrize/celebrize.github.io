@@ -10,6 +10,7 @@ import { useParams, useHistory } from "react-router-dom";
 import Share from '../components/Share'
 import { appName, appTagLine } from '../static'
 import Testimonials from '../components/Testimonials'
+import MyCalculator from '../MyCalculator'
 
 
 const dateFormat = "YYYY-MM-DDTHH:mmZZ"
@@ -18,14 +19,23 @@ const dateFormat = "YYYY-MM-DDTHH:mmZZ"
 function Index() {
     const { date } = useParams()
     const history = useHistory()
+    const [calculator, setCalculator] = useState(undefined)
 
     const birthday = moment(date, dateFormat, true)
     if (date && !birthday.isValid()) {
       return <NotFound message="Invalid date format." />
     }
 
+    let theCalculator = calculator
+    if (birthday && birthday.isValid()) {
+        if (!theCalculator || theCalculator.getBirthday().getTime() !== birthday.toDate().getTime()) {
+            // new date -> new calculator
+            theCalculator = new MyCalculator(birthday.toDate(), new Date())
+            setCalculator(theCalculator)
+        }
+    }
+
     const handleDateChange = (date) => {
-      console.log(date)
       history.push("/" + moment(date).format(dateFormat))
     }
 
@@ -39,13 +49,21 @@ function Index() {
     defaultDate.setMinutes(0)
     defaultDate.setSeconds(0)
 
+    const anniversaries = (() => {
+        if (theCalculator) {
+            return theCalculator.get(16)
+        } else {
+            return []
+        }
+    })()
+
     return (<>
         <PageHeader maxWidth="lg" title={`${appName} – ${appTagLine}`} subtitle="Enter your birthday or anniversary and see what you can celebrate in the next weeks.">
           <DateSelector minDate={minDate} maxDate={maxDate} defaultDate={birthday.isValid() ? birthday.toDate() : defaultDate} onDateChange={handleDateChange} />
         </PageHeader>
         <Container maxWidth="lg">
-          { birthday.isValid() ? (
-            <Anniversaries birthday={birthday} />
+          { anniversaries.length > 0 ? (
+            <Anniversaries anniversaries={anniversaries} />
           ) : (
             <Testimonials />
           ) }

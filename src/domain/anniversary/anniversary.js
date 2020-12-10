@@ -2,8 +2,9 @@
 // can be used for mocks too
 
 class Anniversary {
-    constructor(date) {
+    constructor(date, oddity) {
         this.date = date
+        this.oddity = oddity || 1
     }
 
     getDateObject() {
@@ -19,7 +20,7 @@ class Anniversary {
     }
 
     getOddity() {
-        return 1
+        return this.oddity
     }
 
     getStaticId() {
