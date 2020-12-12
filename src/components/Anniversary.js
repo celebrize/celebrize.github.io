@@ -103,13 +103,13 @@ function Anniversary({anniversary, highlightIf}) {
             </Typography>
         </>)
     } else if (anniversary.getStarName) {
-        title = anniversary.getStarName()
+        title = `Light from ${anniversary.getStarName()}`
         const star = anniversary.getStar()
         backText = (<>
             <Typography variant="body1">
                 {star.getWikipediaLink() ? (
                     <ExternalLink href={star.getWikipediaLink()}>{star.getName()}</ExternalLink>
-                ) : star.getName()}
+                ) : star.getName()}{" "}
                 is a star roughly {star.getDistance().toFixed(2)} light-years from earth. So you can see light from the day you were born.
             </Typography>
             {star.getAppearantMagnitude() < 2.5 ? (
@@ -127,7 +127,7 @@ function Anniversary({anniversary, highlightIf}) {
             )}
             { star.getInTheSkyLink() ? (
                 <Typography variant="body1">
-                    <ExternalLink href={star.getInTheSkyLink() + `&day=${anniversary.getDateObject().getDate()}&month=${anniversary.getDateObject().getMonth() + 1}&year=${anniversary.getDateObject().getFullYear()}`}>in-the-sky.org</ExternalLink>
+                    Check on <ExternalLink href={star.getInTheSkyLink() + `&day=${anniversary.getDateObject().getDate()}&month=${anniversary.getDateObject().getMonth() + 1}&year=${anniversary.getDateObject().getFullYear()}`}>in-the-sky.org</ExternalLink> where and when to see the star.
                 </Typography>
             ) : "" }
             </>

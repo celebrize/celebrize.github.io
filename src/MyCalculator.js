@@ -18,9 +18,10 @@ import * as celestialCalendarPeriods from './periods/celestial_calendar.js'
 import stars from './data/visible_stars'
 
 class MyCalculator {
-    constructor(birthday, now) {
+    constructor(birthday, now, options) {
         this.birthday = birthday
         this.now = now
+        this.options = options || {}
         this.minDate = new Date(this.now)
         this.minDate.setDate(this.minDate.getDate()-7)
 
@@ -40,7 +41,10 @@ class MyCalculator {
         numberPeriodCalc.addPeriods(Object.values(celestialCalendarPeriods))
 
         console.log(this.birthday, this.minDate)
-        const stellarLightCalc = new CalculatorMinMax(new StellarLightCalculator(Array.from(stars), this.birthday), this.minDate)
+        const stellarLightCalc = new CalculatorMinMax(
+            new StellarLightCalculator(Array.from(stars), this.options.latitude || 50, this.birthday),
+            this.minDate
+        )
 
         this.calculator = new CalculatorDeduplicator(new CalculatorMixer(
             numberPeriodCalc,
