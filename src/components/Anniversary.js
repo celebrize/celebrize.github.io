@@ -110,7 +110,7 @@ function Anniversary({anniversary, highlightIf}) {
                 {star.getWikipediaLink() ? (
                     <ExternalLink href={star.getWikipediaLink()}>{star.getName()}</ExternalLink>
                 ) : star.getName()}{" "}
-                is a star roughly {star.getDistance().toFixed(2)} light-years from earth. You can see light from the day you were born.
+                is a star roughly {star.getDistance().toFixed(2)} light-years from earth. Looking at it, you can see light emitted on the day you were born.
             </Typography>
             {star.getAppearantMagnitude() < 2.5 ? (
                 <Typography variant="body1">

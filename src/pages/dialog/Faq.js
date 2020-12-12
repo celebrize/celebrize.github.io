@@ -39,6 +39,16 @@ function Faq({isOpen, handleClose}) {
                 Most of your friends would not notice the difference anyways.
             </p>
         </Accordion>
+        <Accordion id="stellar-1" currentOpenId={opened} title="How accurate is the information on when to see star light from the day of my birth?" onOpen={setOpened}>
+            <p>
+                Meassuring huge distances in space accurately is difficult. This also means that the given dates are not overly accurate. You usually have
+                a time window of a few weeks (for some stars even month) where you can safely state that <em>today</em> is the right moment to look at the star and
+                reminisce about your birth.
+            </p>
+            <p>
+                This also gives you the opportunity to find a cloud-free night to stargaze.
+            </p>
+        </Accordion>
         <Accordion id="contribute-1" currentOpenId={opened} title="You are missing a very important reason to celebrate, namely..." onOpen={setOpened}>
             <p>
                 That's a great idea you have there. Please let me know by <ExternalLink href={githubIssuesUri}>opening an issue</ExternalLink> or 
