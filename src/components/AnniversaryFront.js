@@ -48,13 +48,13 @@ const useStyles = makeStyles((theme) => {
 });
 
 
-function AnniversaryFront({anniversary, onClickInfoButton}) {
+function AnniversaryFront({title, date, onClickInfoButton}) {
     const classes = useStyles()
     return (
         <div className={classes.root}>
             <div className={classes.container}>
-                <Typography variant="h6" classes={{"h6": classes.title}} noWrap={true}>{anniversary.getNumberLabel() + " " + anniversary.getPeriodLabel()}</Typography>
-                <Typography variant="body1" classes={{"body1": classes.text}}><RelativeDay day={anniversary.getDateObject()} /></Typography>
+                <Typography variant="h6" classes={{"h6": classes.title}} noWrap={true}>{title}</Typography>
+                <Typography variant="body1" classes={{"body1": classes.text}}><RelativeDay day={date} /></Typography>
             </div>
             <IconButton aria-label="" className={classes.button} onClick={onClickInfoButton}>
                 <InfoIcon />

@@ -1,5 +1,8 @@
 import NumberPeriodsCalculator from './calculator/number_periods'
+import StellarLightCalculator from './calculator/stellar_light'
 import CalculatorDeduplicator from './calculator/deduplicator'
+import CalculatorMinMax from './calculator/min_max'
+import CalculatorMixer from './calculator/mixer'
 
 import * as digits from './numbers/digits.js'
 // import fibonacci from './numbers/fibonacci.js'
@@ -12,6 +15,8 @@ import * as clockPeriods from './periods/clock.js'
 import * as calendarPeriods from './periods/calendar.js'
 import * as celestialCalendarPeriods from './periods/celestial_calendar.js'
 
+import stars from './data/visible_stars'
+
 class MyCalculator {
     constructor(birthday, now) {
         this.birthday = birthday
@@ -21,7 +26,7 @@ class MyCalculator {
 
         // @TODO: to get faster, every NumberPeriodCalculator should drop results below minDate
 
-        const numberPeriodCalc = new NumberPeriodsCalculator(this.birthday)
+        const numberPeriodCalc = new NumberPeriodsCalculator(this.birthday, this.minDate)
         numberPeriodCalc.addNumberGenerators(Object.values(digits))
         //calculator.addNumberGenerator(fibonacci)
         numberPeriodCalc.addNumberGenerators(Object.values(roundNumbers))
@@ -34,7 +39,13 @@ class MyCalculator {
         numberPeriodCalc.addPeriods(Object.values(calendarPeriods))
         numberPeriodCalc.addPeriods(Object.values(celestialCalendarPeriods))
 
-        this.calculator = new CalculatorDeduplicator(numberPeriodCalc)
+        console.log(this.birthday, this.minDate)
+        const stellarLightCalc = new CalculatorMinMax(new StellarLightCalculator(Array.from(stars), this.birthday), this.minDate)
+
+        this.calculator = new CalculatorDeduplicator(new CalculatorMixer(
+            numberPeriodCalc,
+            stellarLightCalc
+        ))
 
         this.cache = []
     }
@@ -46,7 +57,7 @@ class MyCalculator {
     get(amount) {
         while(this.cache.length < amount && !this.calculator.isDone()) {
             const anniversary = this.calculator.next()
-            if (anniversary && anniversary.getTime() > this.minDate.getTime()) { this.cache.push(anniversary) }
+            if (anniversary && anniversary.getTime() >= this.minDate.getTime()) { this.cache.push(anniversary) }
         }
         return this.cache.slice(0, amount)
     }

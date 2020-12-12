@@ -5,7 +5,7 @@ class CalculatorMixer {
     }
 
     isDone() {
-        return this.calculators.every(calc => calc.isDone)
+        return this.calculators.every(calc => calc.isDone() && !calc._current)
     }
 
     next() {

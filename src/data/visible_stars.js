@@ -231,31 +231,37 @@ function convertWikipediaId(name) {
     return name.replace(/ /g, "_").replace(/_[AB]$/, "").replace(/[\u00B9\u00B2\u00B3\u2070-\u2079]/g, superToDec)
 }
 
+function convertTyc(input) {
+    if (!input.startsWith("TYC")) { return null }
+    return input.substr(4).trim()
+}
+
 data.split("\n").forEach(line => {
     const columns = line.split(";")
     if (columns.length <= 1) { return } // not a table
-    if (columns.length !== 5) {
+    if (columns.length !== 6) {
         warning(`Expected row to contain exactly 5 columns, but got ${columns.length}: ${line}`)
         return
     }
-    const [col1, col2, col3, col4, col5] = columns
+    const [col1, col2, col3, col4, col5, col6] = columns
     if (col1 === "---" || col1 === " # ") { return } // table formating or header
 
     const id = parseInt(col1)
     const name = convertHumanName(parseString(col2))
     const wikipediaId = convertWikipediaId(name)
-    const [rightAscension, declination] = parseCoordinates(col3)
-    const parallax = parseFloat(col4)
+    const tycId = convertTyc(col3)
+    const [rightAscension, declination] = parseCoordinates(col4)
+    const parallax = parseFloat(col5)
     const distance = parallaxToLightyears(parallax)
     if (distance < 0.1 || distance > 120) {
         warning(`Expected distance to be lower than 120 years, but got ${distance} for ${name}.`)
     }
-    const magnitude = parseFloat(col5)
+    const magnitude = parseFloat(col6)
     if (magnitude > 6) {
         warning(`Expected magnitude to be lower than 6, so it is visible by eye, got ${magnitude} for ${name}.`)
     }
 
-    stars.push(new CelestialFixedStar(name, rightAscension, declination, magnitude, distance, wikipediaId))
+    stars.push(new CelestialFixedStar(name, rightAscension, declination, magnitude, distance, wikipediaId, tycId))
 })
 
 stars.sort((a, b) => a.distance - b.distance)

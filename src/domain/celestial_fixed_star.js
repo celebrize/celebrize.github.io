@@ -93,13 +93,34 @@ function getSunEquatorialCoordinates(date) {
 }
 
 class CelestialFixedStar {
-    constructor(name, rightAscension, declination, apparentMagnitude, distance, wikipediaId) {
+    constructor(name, rightAscension, declination, apparentMagnitude, distance, wikipediaId, tycId) {
         this.name = name
         this.rightAscension = parseRightAscension(rightAscension)
         this.declination = parseDeclination(declination)
         this.apparentMagnitude = apparentMagnitude
         this.distance = distance
         this.wikipediaId = wikipediaId
+        this.tycId = tycId
+    }
+
+    getWikipediaLink() {
+        return this.wikipediaId ? `https://en.wikipedia.org/wiki/${this.wikipediaId}` : null
+    }
+
+    getInTheSkyLink() {
+        return this.tycId ? `https://in-the-sky.org/data/object.php?id=TYC${this.tycId}` : null
+    }
+
+    getName() {
+        return this.name
+    }
+
+    getDistance() {
+        return this.distance
+    }
+
+    getAppearantMagnitude() {
+        return this.apparentMagnitude
     }
 
     // @TODO: classify how good the stars are visible https://en.wikipedia.org/wiki/Bortle_scale

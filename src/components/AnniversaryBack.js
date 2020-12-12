@@ -4,9 +4,9 @@ import { Typography, IconButton } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import BackIcon from '@material-ui/icons/Undo';
 import TimePeriod from '../domain/period';
-import MyMarkdown from './MyMarkdown';
 import moment from 'moment';
 import ExternalLink from './ExternalLink'
+import Anniversary from '../domain/anniversary/anniversary'
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -32,26 +32,26 @@ const useStyles = makeStyles((theme) => {
             flexDirection: "column",
             justifyContent: "center",
             alignContent: "center",
+            "& p": {
+                fontSize: "0.75rem",
+                lineHeight: "1.5em",
+                paddingLeft: theme.spacing(4),
+                textIndent: theme.spacing(-4),
+                marginBottom: theme.spacing(0.5),
+                "& a": {
+                    color: "#aaa",
+                    textDecoration: "none",
+                    fontWeight: "bold",
+                    "&:hover, &:focus": {
+                        color: "#fff",
+                    }
+                }
+            }
         },
         title: {
             fontSize: "1rem",
             lineHeight: "2rem",
             marginBottom: theme.spacing(1),
-        },
-        text: {
-            fontSize: "0.75rem",
-            lineHeight: "1.5em",
-            paddingLeft: theme.spacing(4),
-            textIndent: theme.spacing(-4),
-            marginBottom: theme.spacing(0.5),
-            "& a": {
-                color: "#aaa",
-                textDecoration: "none",
-                fontWeight: "bold",
-                "&:hover, &:focus": {
-                    color: "#fff",
-                }
-            }
         },
 
         footer: {
@@ -81,22 +81,14 @@ const useStyles = makeStyles((theme) => {
     }
 });
 
-function AnniversaryBack({anniversary, image, onClickBackButton}) {
+function AnniversaryBack({date, datePrecision, image, onClickBackButton, children}) {
     const classes = useStyles()
-    
     return (
         <div className={classes.root}>
             <div className={classes.body}>
                 <div>
-                    <Typography variant="h6" classes={{"h6": classes.title}} noWrap={true}>{moment(anniversary.getDateObject()).format(anniversary.getPrecision() === TimePeriod.DAYS ? 'LL': 'LLL')}</Typography>
-                    <Typography variant="body1" classes={{"body1": classes.text}}>
-                        <strong>{anniversary.getNumberLabel()}</strong>
-                        {anniversary.hasDecimalLabel() ? ` = ${anniversary.getDecimalLabel()}` : ""}
-                        {anniversary.getNumberHelpText() ? ": " : ""}{anniversary.getNumberHelpText() ? (<MyMarkdown>{anniversary.getNumberHelpText()}</MyMarkdown>) : ""}
-                    </Typography>
-                    <Typography variant="body1" classes={{"body1": classes.text}}>
-                        <strong>{anniversary.getPeriodLabel()}</strong>{anniversary.getPeriodHelpText() ? ": " : ""}{anniversary.getPeriodHelpText() ? (<MyMarkdown>{anniversary.getPeriodHelpText()}</MyMarkdown>) : ""}
-                    </Typography>
+                    <Typography variant="h6" classes={{"h6": classes.title}} noWrap={true}>{moment(date).format(datePrecision === Anniversary.PRECISION_DAYS ? 'LL': 'LLL')}</Typography>
+                    {children}
                 </div>
             </div>
             <div className={classes.footer}>

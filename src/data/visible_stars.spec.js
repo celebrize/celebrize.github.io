@@ -56,17 +56,20 @@ describe("Wikipedia Id", () => {
 describe("Correct data", () => {
 
     const testData = [
-        ["HD 30562", 4.810107, -5.6740, 5.77, 85.4],
-        ["HD 219134", 23.22138231, 57.16836, 5.574, 21.35],
-        ["94 Aquarii", 23.3185349, -12.5412182, 5.19, 72.6],
-        ["72 Ophiuchi", 18.12249554, 9.5638473, 3.73, 86.9],
-        ["Kappa Coronae Borealis", 15.8538, 35.6573, 4.79, 98.1],
-        ["I Carinae", 10.4065, -74.031, 3.99, 52.9],
-        ["Gamma Doradus", 4.26710784, -50.5133558, 4.25, 66.7],
+        ["HD 30562", "4748-1630-1", 4.810107, -5.6740, 5.77, 85.4],
+        ["HD 219134", "4006-1866-1", 23.22138231, 57.16836, 5.574, 21.35],
+        ["94 Aquarii", "5827-1271-1", 23.3185349, -12.5412182, 5.19, 72.6],
+        ["72 Ophiuchi", "1012-1661-1", 18.12249554, 9.5638473, 3.73, 86.9],
+        ["Kappa Coronae Borealis", "2578-1609-1", 15.8538, 35.6573, 4.79, 98.1],
+        ["I Carinae", "9223-2880-1", 10.4065, -74.031, 3.99, 52.9],
+        ["Gamma Doradus", "8075-1796-1", 4.26710784, -50.5133558, 4.25, 66.7],
     ]
 
-    testData.forEach(([name, expRa, expDec, expMag, expDist]) => {
+    testData.forEach(([name, expTyc, expRa, expDec, expMag, expDist]) => {
         const star = findStar(name)
+        test(`${name} should have correct TYC classification`, () => {
+            expect(star.tycId).toEqual(expTyc)
+        })
         test(`${name} should have correct declination`, () => {
             expect(star.declination).toBeGreaterThan(expDec - 1)
             expect(star.declination).toBeLessThan(expDec + 1)

@@ -42,6 +42,7 @@ test('it sorts dates ascending', () => {
     for (let day=1; day<32; day++) {
         const anniversary = calculator.next()
         expect(anniversary).toBeTruthy()
+        expect(calculator.isDone()).toBe(day === 31)
         expect(anniversary.getDateObject().getUTCDate()).toEqual(day)
     }
     const anniversary = calculator.next()
