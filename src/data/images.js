@@ -31,7 +31,7 @@ export default [
     new Unsplash("O453M2Liufs", "Luca Bravo", "1476514525535-07fb3b4ae5f1", "#F1F2F3", "boat", "boats"),
     new Unsplash("7ghPaPLdmTY", "Bobby Burch", "1500917832468-298fa6292e2b", "#241F1F", "boat", "boats"),
     new Unsplash("Vct0oBHNmv4", "Joshua Lanzarini", "1530836176759-510f58baebf4", "#EED2C7", "seed"),
-    new Unsplash("vGjGvtSfys4", "Jeremy Bishop", "1458014854819-1a40aa70211c", "seed"),
+    new Unsplash("vGjGvtSfys4", "Jeremy Bishop", "1458014854819-1a40aa70211c", "#2E381A", "seed"),
     new Unsplash("kcA-c3f_3FE", "Anh Nguyen", "1546069901-ba9599a7e63c", "#0E1012", "salad"),
     new Unsplash("-ftWfohtjNw", "Nadine Primeau", "1540420773420-3366772f4999", "#EFF5F5", "salad"),
     new Unsplash("lFUpuSlK6c8", "Halacious", "1573871665247-2b556aa23460", "#FEFDF5", "oboe"),
