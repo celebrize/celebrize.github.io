@@ -123,8 +123,6 @@ class CelestialFixedStar {
         return this.apparentMagnitude
     }
 
-    // @TODO: classify how good the stars are visible https://en.wikipedia.org/wiki/Bortle_scale
-
     isInView(latitude, date) {
         const [sunRightAscension, sunDeclination] = getSunEquatorialCoordinates(date)
         // no stars can be seen if you live in the polar regions during midnight sun

@@ -2,9 +2,10 @@ import Anniversary from './anniversary'
 
 // when you can see the light of a star from the date of your birth
 class StellarLightAnniversary {
-    constructor(date, star) {
+    constructor(date, star, oddity) {
         this.date = date
         this.star = star
+        this.oddity = oddity
     }
 
     getDateObject() {
@@ -20,8 +21,7 @@ class StellarLightAnniversary {
     }
 
     getOddity() {
-        // @TODO
-        return 1
+        return this.oddity
     }
 
     getStar() {
