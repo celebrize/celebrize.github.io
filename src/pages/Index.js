@@ -33,6 +33,8 @@ function Index() {
             theCalculator = new MyCalculator(birthday.toDate(), new Date())
             setCalculator(theCalculator)
         }
+    } else if (theCalculator !== undefined) {
+        setCalculator(undefined)
     }
 
     const handleDateChange = (date) => {
