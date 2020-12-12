@@ -39,7 +39,7 @@ class GeneratedNumber {
     }
 
     hasTag(tag) {
-        return this.tags.some(v => v === tag)
+        return this.tags.some(v => v === tag) || this.label === tag || this.toString() === tag
     }
 }
 

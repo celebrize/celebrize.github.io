@@ -32,12 +32,7 @@ class Unsplash {
     // return true if it is a perfect match, false if it is no match at all, null in all other cases
     isMatch(anniversary) {
         return this.onlyWhen.reduce((ret, onlyWhen) => {
-            if (typeof(onlyWhen) === 'number') {
-                return ret || anniversary.getNumber() === onlyWhen
-            } else if (typeof(onlyWhen) === 'string') {
-                return ret || anniversary.hasTag(onlyWhen)
-            }
-            return ret || null
+            return ret || anniversary.hasTag(onlyWhen.toString())
         }, null)
     }
 
