@@ -94,6 +94,11 @@ const testimonials = [
         quote: `Today I've sent out invites for my party. I turn 1234567890 seconds next month.`,
         image: "image05.jpg",
     },
+    {
+        name: "Olaf, 42",
+        quote: `I just celebrated my first birthday under a star-lit sky. Space is so huge that we could watch Capella – one of the brightest stars – and see light radiated at the day I was born. It was a sublime experience.`,
+        image: "image06.jpg",
+    },
 ].map(t => {
     t.random = Math.random()
     return t
