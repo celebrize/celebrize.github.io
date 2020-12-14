@@ -1,5 +1,12 @@
 import Unsplash from '../domain/unsplash'
 
+/* Unsplash grants you an irrevocable, nonexclusive, worldwide copyright license to download,
+ * copy, modify, distribute, perform, and use photos from Unsplash for free, including for 
+ * commercial purposes, without permission from or attributing the photographer or Unsplash.
+ * This license does not include the right to compile photos from Unsplash to replicate a
+ * similar or competing service.
+ */
+
 export default [
     new Unsplash("7HVGbM4JilI", "Alex Franzelin", "1450000345075-1feb871941ca", "#BEC5D6", "star"),
     new Unsplash("C-NjurcSNQM", "David Billings", "1555582874-cb3064e5be06", "#F99664", "star"),
