@@ -6,6 +6,9 @@ const githubUri = "https://github.com/celebrize/celebrize.github.io"
 const githubIssuesUri = githubUri + "/issues"
 const githubPullsUri = githubUri + "/pulls"
 const xopnUri = "http://xopn.de"
+const twitterHandle = "celebrizeapp"
+const instagramHandle = null
+const defaultHashTag = "celebrizeapp"
 
 export {
     appName,
@@ -15,4 +18,7 @@ export {
     githubIssuesUri,
     githubPullsUri,
     xopnUri,
+    twitterHandle,
+    instagramHandle,
+    defaultHashTag,
 }

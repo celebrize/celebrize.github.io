@@ -4,7 +4,9 @@ import { Container, Typography, Link } from '@material-ui/core';
 import ExternalLink from '../components/ExternalLink';
 import About from '../pages/dialog/About'
 import Faq from '../pages/dialog/Faq'
-import { githubUri, xopnUri } from '../static'
+import { githubUri, xopnUri, instagramHandle, twitterHandle } from '../static'
+import TwitterIcon from '@material-ui/icons/Twitter';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
 const useStyles = makeStyles((theme) => {
     return {
@@ -20,6 +22,7 @@ const useStyles = makeStyles((theme) => {
       flex: {
         display: "flex",
         justifyContent: "center",
+        flexWrap: "wrap",
       },
       navItem: {
         padding: theme.spacing(0, 1),
@@ -49,6 +52,12 @@ function PageHeader({maxWidth, children}) {
               <Link className={classes.navItem} href="#" onClick={openAbout}>About</Link>
               <Link className={classes.navItem} href="#" onClick={openFaq}>Q&amp;A</Link>
               <ExternalLink className={classes.navItem} href={githubUri}>Contribute</ExternalLink>
+              { twitterHandle && (
+                <ExternalLink className={classes.navItem} href={`https://twitter.com/${twitterHandle}`}><TwitterIcon /></ExternalLink>
+              )}
+              { instagramHandle && (
+                <ExternalLink className={classes.navItem} href={`https://instagram.com/${instagramHandle}/`}><InstagramIcon /></ExternalLink>
+              )}
               <Typography className={classes.navItem} component="div">Made with ❤ by <ExternalLink href={xopnUri}>xopn</ExternalLink></Typography>
             </Typography>
           </Container>
