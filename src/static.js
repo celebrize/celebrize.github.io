@@ -7,7 +7,7 @@ const githubIssuesUri = githubUri + "/issues"
 const githubPullsUri = githubUri + "/pulls"
 const xopnUri = "http://xopn.de"
 const twitterHandle = "celebrizeapp"
-const instagramHandle = null
+const instagramHandle = "celebrizeapp"
 const defaultHashTag = "celebrizeapp"
 
 export {
