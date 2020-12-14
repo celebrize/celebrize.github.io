@@ -26,6 +26,8 @@ jobs:
       run: npm ci
     - name: Build page
       run: npm run build
+    - name: Set custom domain
+      run: echo "celebrize.app" > ./build/CNAME
     - name: Deploy to gh-pages
       uses: peaceiris/actions-gh-pages@v3
       with:
