@@ -1,19 +1,23 @@
 import React, { useState } from 'react';
 import Anniversary from './Anniversary';
-import AnniversaryInfo from './AnniversaryInfo'
+
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-
-
-
+import { Grid, CircularProgress, Card } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
+
+  tile: {
+      position: "relative",
+      color: "#fff",
+      alignItems: "center",
+      height: "100%",
+  },
 }));
 
-function Anniversaries({anniversaries}) {
+function Anniversaries({anniversaries, children}) {
     const classes = useStyles()
     
     const spacing = 2
@@ -23,7 +27,7 @@ function Anniversaries({anniversaries}) {
     return (
       <Grid container className={classes.root} spacing={spacing} justify="center">
         {anniversaries.map(anniversary => (<Anniversary anniversary={anniversary} key={anniversary.getStaticId()} highlightIf={lowestOddity * 1.1} />))}
-        <AnniversaryInfo />
+        {children}
       </Grid>
     )
 }

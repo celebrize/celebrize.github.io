@@ -24,6 +24,7 @@ class MyCalculator {
         this.options = options || {}
         this.minDate = new Date(this.now)
         this.minDate.setDate(this.minDate.getDate()-7)
+        this.loading = false
 
         // @TODO: to get faster, every NumberPeriodCalculator should drop results below minDate
 
@@ -57,13 +58,25 @@ class MyCalculator {
     getBirthday() {
         return this.birthday
     }
+    isLoading() {
+        return this.loading
+    }
 
-    get(amount) {
-        while(this.cache.length < amount && !this.calculator.isDone()) {
-            const anniversary = this.calculator.next()
-            if (anniversary && anniversary.getTime() >= this.minDate.getTime()) { this.cache.push(anniversary) }
-        }
-        return this.cache.slice(0, amount)
+    get(amount, callback) {
+        if (this.loading) { console.warning("another job to generate anniversaries is already running. Behavior is undefined and might lead to strange results.") }
+        this.loading = true
+
+        return new Promise((resolve, reject) => {
+            while(this.cache.length < amount && !this.calculator.isDone()) {
+                const anniversary = this.calculator.next()
+                if (anniversary && anniversary.getTime() >= this.minDate.getTime()) { 
+                    this.cache.push(anniversary)
+                    callback && callback(this.cache.slice(0, amount))
+                }
+            }
+            this.loading = false
+            resolve(this.cache.slice(0, amount))
+        })
     }
 }
 

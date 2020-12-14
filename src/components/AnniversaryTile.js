@@ -24,7 +24,6 @@ const useStyles = makeStyles(theme => {
             color: "#fff",
             alignItems: "center",
             height: "100%",
-
         },
     }
 
